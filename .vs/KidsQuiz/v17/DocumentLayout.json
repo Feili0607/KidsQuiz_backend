@@ -1,0 +1,165 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\code\\KidsQuiz\\backend\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{C128C6F2-1DDA-415B-B11D-51728F7B6966}|KidsQuiz.Data\\KidsQuiz.Data.csproj|d:\\code\\kidsquiz\\backend\\kidsquiz.data\\models\\kid.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C128C6F2-1DDA-415B-B11D-51728F7B6966}|KidsQuiz.Data\\KidsQuiz.Data.csproj|solutionrelative:kidsquiz.data\\models\\kid.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C128C6F2-1DDA-415B-B11D-51728F7B6966}|KidsQuiz.Data\\KidsQuiz.Data.csproj|d:\\code\\kidsquiz\\backend\\kidsquiz.data\\configurations\\kidconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C128C6F2-1DDA-415B-B11D-51728F7B6966}|KidsQuiz.Data\\KidsQuiz.Data.csproj|solutionrelative:kidsquiz.data\\configurations\\kidconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C128C6F2-1DDA-415B-B11D-51728F7B6966}|KidsQuiz.Data\\KidsQuiz.Data.csproj|d:\\code\\kidsquiz\\backend\\kidsquiz.data\\kidsquiz.data.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{C128C6F2-1DDA-415B-B11D-51728F7B6966}|KidsQuiz.Data\\KidsQuiz.Data.csproj|solutionrelative:kidsquiz.data\\kidsquiz.data.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CE472812-D0E2-4802-A6B4-3CC33DBAC816}|KidsQuiz.API\\KidsQuiz.API.csproj|d:\\code\\kidsquiz\\backend\\kidsquiz.api\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{CE472812-D0E2-4802-A6B4-3CC33DBAC816}|KidsQuiz.API\\KidsQuiz.API.csproj|solutionrelative:kidsquiz.api\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C128C6F2-1DDA-415B-B11D-51728F7B6966}|KidsQuiz.Data\\KidsQuiz.Data.csproj|d:\\code\\kidsquiz\\backend\\kidsquiz.data\\models\\quiz.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C128C6F2-1DDA-415B-B11D-51728F7B6966}|KidsQuiz.Data\\KidsQuiz.Data.csproj|solutionrelative:kidsquiz.data\\models\\quiz.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E59E288E-542F-479A-9B84-F421B4C37212}|KidsQuiz.Services\\KidsQuiz.Services.csproj|d:\\code\\kidsquiz\\backend\\kidsquiz.services\\interfaces\\iquizservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E59E288E-542F-479A-9B84-F421B4C37212}|KidsQuiz.Services\\KidsQuiz.Services.csproj|solutionrelative:kidsquiz.services\\interfaces\\iquizservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E59E288E-542F-479A-9B84-F421B4C37212}|KidsQuiz.Services\\KidsQuiz.Services.csproj|d:\\code\\kidsquiz\\backend\\kidsquiz.services\\interfaces\\ikidsservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E59E288E-542F-479A-9B84-F421B4C37212}|KidsQuiz.Services\\KidsQuiz.Services.csproj|solutionrelative:kidsquiz.services\\interfaces\\ikidsservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CE472812-D0E2-4802-A6B4-3CC33DBAC816}|KidsQuiz.API\\KidsQuiz.API.csproj|d:\\code\\kidsquiz\\backend\\kidsquiz.api\\kidsquiz.api.http||{5703B403-55E7-4C63-8C88-A8F52C7A45C5}",
+      "RelativeMoniker": "D:0:0:{CE472812-D0E2-4802-A6B4-3CC33DBAC816}|KidsQuiz.API\\KidsQuiz.API.csproj|solutionrelative:kidsquiz.api\\kidsquiz.api.http||{5703B403-55E7-4C63-8C88-A8F52C7A45C5}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 9,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{b1e99781-ab81-11d0-b683-00aa00a3ee26}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:129:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:130:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{eefa5220-e298-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "KidConfiguration.cs",
+              "DocumentMoniker": "D:\\code\\KidsQuiz\\backend\\KidsQuiz.Data\\Configurations\\KidConfiguration.cs",
+              "RelativeDocumentMoniker": "KidsQuiz.Data\\Configurations\\KidConfiguration.cs",
+              "ToolTip": "D:\\code\\KidsQuiz\\backend\\KidsQuiz.Data\\Configurations\\KidConfiguration.cs",
+              "RelativeToolTip": "KidsQuiz.Data\\Configurations\\KidConfiguration.cs",
+              "ViewState": "AgIAABoAAAAAAAAAAAAQwDEAAAA2AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-07T10:44:02.537Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "KidsQuiz.Data.csproj",
+              "DocumentMoniker": "D:\\code\\KidsQuiz\\backend\\KidsQuiz.Data\\KidsQuiz.Data.csproj",
+              "RelativeDocumentMoniker": "KidsQuiz.Data\\KidsQuiz.Data.csproj",
+              "ToolTip": "D:\\code\\KidsQuiz\\backend\\KidsQuiz.Data\\KidsQuiz.Data.csproj",
+              "RelativeToolTip": "KidsQuiz.Data\\KidsQuiz.Data.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2025-04-07T10:42:53.342Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "D:\\code\\KidsQuiz\\backend\\KidsQuiz.API\\appsettings.json",
+              "RelativeDocumentMoniker": "KidsQuiz.API\\appsettings.json",
+              "ToolTip": "D:\\code\\KidsQuiz\\backend\\KidsQuiz.API\\appsettings.json",
+              "RelativeToolTip": "KidsQuiz.API\\appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-04-07T10:40:22.77Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Quiz.cs",
+              "DocumentMoniker": "D:\\code\\KidsQuiz\\backend\\KidsQuiz.Data\\Models\\Quiz.cs",
+              "RelativeDocumentMoniker": "KidsQuiz.Data\\Models\\Quiz.cs",
+              "ToolTip": "D:\\code\\KidsQuiz\\backend\\KidsQuiz.Data\\Models\\Quiz.cs",
+              "RelativeToolTip": "KidsQuiz.Data\\Models\\Quiz.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAABGAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-05T06:18:32.426Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "IQuizService.cs",
+              "DocumentMoniker": "D:\\code\\KidsQuiz\\backend\\KidsQuiz.Services\\Interfaces\\IQuizService.cs",
+              "RelativeDocumentMoniker": "KidsQuiz.Services\\Interfaces\\IQuizService.cs",
+              "ToolTip": "D:\\code\\KidsQuiz\\backend\\KidsQuiz.Services\\Interfaces\\IQuizService.cs",
+              "RelativeToolTip": "KidsQuiz.Services\\Interfaces\\IQuizService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAuAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-05T06:17:24.863Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Kid.cs",
+              "DocumentMoniker": "D:\\code\\KidsQuiz\\backend\\KidsQuiz.Data\\Models\\Kid.cs",
+              "RelativeDocumentMoniker": "KidsQuiz.Data\\Models\\Kid.cs",
+              "ToolTip": "D:\\code\\KidsQuiz\\backend\\KidsQuiz.Data\\Models\\Kid.cs",
+              "RelativeToolTip": "KidsQuiz.Data\\Models\\Kid.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAuwA4AAAAPAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-05T06:15:42.811Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "IKidsService.cs",
+              "DocumentMoniker": "D:\\code\\KidsQuiz\\backend\\KidsQuiz.Services\\Interfaces\\IKidsService.cs",
+              "RelativeDocumentMoniker": "KidsQuiz.Services\\Interfaces\\IKidsService.cs",
+              "ToolTip": "D:\\code\\KidsQuiz\\backend\\KidsQuiz.Services\\Interfaces\\IKidsService.cs",
+              "RelativeToolTip": "KidsQuiz.Services\\Interfaces\\IKidsService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-05T06:15:25.765Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "KidsQuiz.API.http",
+              "DocumentMoniker": "D:\\code\\KidsQuiz\\backend\\KidsQuiz.API\\KidsQuiz.API.http",
+              "RelativeDocumentMoniker": "KidsQuiz.API\\KidsQuiz.API.http",
+              "ToolTip": "D:\\code\\KidsQuiz\\backend\\KidsQuiz.API\\KidsQuiz.API.http",
+              "RelativeToolTip": "KidsQuiz.API\\KidsQuiz.API.http",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003502|",
+              "WhenOpened": "2025-04-05T06:14:50.399Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

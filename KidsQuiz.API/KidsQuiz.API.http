@@ -1,0 +1,6 @@
+@KidsQuiz.API_HostAddress = http://localhost:5129
+
+GET {{KidsQuiz.API_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
