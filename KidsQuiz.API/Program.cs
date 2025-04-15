@@ -4,6 +4,10 @@ using Microsoft.Extensions.Hosting;
 using KidsQuiz.API.Extensions;
 using KidsQuiz.Services.Caching;
 using Serilog;
+using Microsoft.EntityFrameworkCore;
+using KidsQuiz.Data;
+using KidsQuiz.Services.Interfaces;
+using KidsQuiz.Services.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -18,7 +22,7 @@ builder.Services.AddMemoryCache();
 builder.Services.AddScoped<ICacheService, CacheService>();
 
 // Add Application Insights
-builder.Services.AddApplicationInsightsTelemetry(builder.Configuration);
+Microsoft.Extensions.DependencyInjection.ApplicationInsightsExtensions.AddApplicationInsightsTelemetry(builder.Services, builder.Configuration);
 
 // Add controllers
 builder.Services.AddControllers();
@@ -26,6 +30,15 @@ builder.Services.AddControllers();
 // Add Swagger/OpenAPI
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+// Add DbContext
+builder.Services.AddDbContext<ApplicationDbContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+// Register Services
+builder.Services.AddScoped<IKidService, KidService>();
+builder.Services.AddScoped<IQuizService, QuizService>();
+builder.Services.AddScoped<IQuizSolvingRecordService, QuizSolvingRecordService>();
 
 var app = builder.Build();
 

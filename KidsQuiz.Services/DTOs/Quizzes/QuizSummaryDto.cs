@@ -1,5 +1,5 @@
 using System;
-using KidsQuiz.Data.Entities.ValueObjects;
+using KidsQuiz.Data.ValueObjects;
 
 namespace KidsQuiz.Services.DTOs.Quizzes
 {

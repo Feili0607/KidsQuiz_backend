@@ -1,6 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using KidsQuiz.Data.Entities;
+using KidsQuiz.Data.Models;
 
 namespace KidsQuiz.Data.Configurations
 {
@@ -21,9 +21,7 @@ namespace KidsQuiz.Data.Configurations
                 .HasColumnType("jsonb");
 
             // Add indexes
-            builder.HasIndex(q => q.TargetAgeGroup);
             builder.HasIndex(q => q.DifficultyLevel);
-            builder.HasIndex(q => q.Category);
             builder.HasIndex(q => q.Rating);
             builder.HasIndex(q => q.CreatedAt);
         }

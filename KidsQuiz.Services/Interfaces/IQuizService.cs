@@ -1,20 +1,20 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using KidsQuiz.Data.Models;
+using KidsQuiz.Services.DTOs.Quizzes;
 
 namespace KidsQuiz.Services.Interfaces
 {
     public interface IQuizService
     {
-        Task<Quiz> GetQuizByIdAsync(int id);
-        Task<List<Quiz>> GetAllQuizzesAsync();
-        Task<Quiz> CreateQuizAsync(Quiz quiz);
-        Task<Quiz> UpdateQuizAsync(Quiz quiz);
+        Task<QuizDto> GetQuizAsync(int id);
+        Task<IEnumerable<QuizDto>> GetAllQuizzesAsync();
+        Task<QuizDto> CreateQuizAsync(QuizCreateDto quizCreateDto);
+        Task UpdateQuizAsync(int id, QuizUpdateDto quizUpdateDto);
         Task DeleteQuizAsync(int id);
         
         // LLM Generation
-        Task<Quiz> GenerateQuizUsingLLMAsync(string prompt, int difficultyLevel);
-        Task<Quiz> ModifyQuizUsingLLMAsync(int quizId, string modificationPrompt);
+        Task<QuizDto> GenerateQuizUsingLLMAsync(string prompt, int difficultyLevel);
+        Task<QuizDto> ModifyQuizUsingLLMAsync(int quizId, string modificationPrompt);
         
         // Rating and Labeling
         Task UpdateQuizRatingAsync(int quizId, double rating);
@@ -22,7 +22,7 @@ namespace KidsQuiz.Services.Interfaces
         Task RemoveLabelFromQuizAsync(int quizId, string label);
         
         // Filtering
-        Task<List<Quiz>> GetQuizzesByLabelsAsync(List<string> labels);
-        Task<List<Quiz>> GetQuizzesByDifficultyAsync(int difficultyLevel);
+        Task<IEnumerable<QuizDto>> GetQuizzesByLabelsAsync(List<string> labels);
+        Task<IEnumerable<QuizDto>> GetQuizzesByDifficultyAsync(int difficultyLevel);
     }
 } 

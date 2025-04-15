@@ -1,20 +1,19 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using KidsQuiz.Data.Models;
+using KidsQuiz.Services.DTOs.Records;
 
 namespace KidsQuiz.Services.Interfaces
 {
     public interface IQuizSolvingRecordService
     {
-        Task<QuizSolvingRecord> GetRecordByIdAsync(int id);
-        Task<List<QuizSolvingRecord>> GetRecordsByKidIdAsync(int kidId);
-        Task<List<QuizSolvingRecord>> GetRecordsByQuizIdAsync(int quizId);
-        Task<QuizSolvingRecord> StartQuizSolvingAsync(int kidId, int quizId);
-        Task<QuizSolvingRecord> CompleteQuizSolvingAsync(int recordId, string answers, int score, int timeTakenInSeconds);
-        
-        // Analytics
-        Task<double> GetAverageScoreByKidAsync(int kidId);
-        Task<double> GetAverageScoreByQuizAsync(int quizId);
-        Task<List<QuizSolvingRecord>> GetRecentRecordsByKidAsync(int kidId, int count);
+        Task<IEnumerable<QuizRecordDto>> GetAllRecordsAsync();
+        Task<QuizRecordDto> GetRecordAsync(int id);
+        Task<IEnumerable<QuizRecordDto>> GetRecordsByKidAsync(int kidId);
+        Task<IEnumerable<QuizRecordDto>> GetRecordsByQuizAsync(int quizId);
+        Task<QuizRecordDto> CreateRecordAsync(QuizRecordDto recordDto);
+        Task<QuizResultDto> SubmitQuizAnswersAsync(QuizRecordDto recordDto);
+        Task<Dictionary<string, object>> GetKidQuizStatsAsync(int kidId);
+        Task<Dictionary<string, object>> GetKidProgressAsync(int kidId);
+        Task<IEnumerable<QuizSummaryDto>> GetKidRecommendationsAsync(int kidId);
     }
 } 

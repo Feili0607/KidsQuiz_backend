@@ -1,5 +1,5 @@
 using System.Collections.Generic;
-using KidsQuiz.Data.Entities.ValueObjects;
+using KidsQuiz.Data.ValueObjects;
 
 namespace KidsQuiz.Services.DTOs.Quizzes
 {
@@ -7,11 +7,12 @@ namespace KidsQuiz.Services.DTOs.Quizzes
     {
         public string Title { get; set; }
         public string Description { get; set; }
-        public List<QuestionCreateDto> Questions { get; set; }
+        public string Content { get; set; }
+        public int DifficultyLevel { get; set; }
         public List<string> Labels { get; set; }
+        public List<QuestionCreateDto> Questions { get; set; }
         public AgeGroup TargetAgeGroup { get; set; }
-        public DifficultyLevel DifficultyLevel { get; set; }
-        public InterestCategory Category { get; set; }
+       
         public int EstimatedDurationMinutes { get; set; }
         public bool IsGeneratedByLLM { get; set; }
         public string LLMPrompt { get; set; }

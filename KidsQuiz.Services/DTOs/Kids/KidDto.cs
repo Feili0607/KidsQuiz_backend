@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using KidsQuiz.Data.Entities.ValueObjects;
 using System.Text.Json;
 
 namespace KidsQuiz.Services.DTOs.Kids
@@ -12,8 +11,7 @@ namespace KidsQuiz.Services.DTOs.Kids
         public DateTime DateOfBirth { get; set; }
         public string Email { get; set; }
         public string Intro { get; set; }
-        public AgeGroup AgeGroup { get; set; }
-        public List<InterestCategory> Interests { get; set; }
+
         public Dictionary<string, object> Properties { get; set; } = new Dictionary<string, object>();
         public DateTime CreatedAt { get; set; }
         public DateTime? LastModifiedAt { get; set; }
