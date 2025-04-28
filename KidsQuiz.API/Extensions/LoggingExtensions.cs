@@ -1,8 +1,7 @@
 using Microsoft.ApplicationInsights.Extensibility;
 using Serilog;
 using Serilog.Events;
-using Serilog.Sinks.ApplicationInsights.Sinks.ApplicationInsights.TelemetryConverters;
-using System;
+using Serilog.Sinks.ApplicationInsights.TelemetryConverters;
 
 namespace KidsQuiz.API.Extensions
 {

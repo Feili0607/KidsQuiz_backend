@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
-using KidsQuiz.Data.Entities.ValueObjects;
+
+using KidsQuiz.Data.ValueObjects;
 
 namespace KidsQuiz.Services.Helpers
 {

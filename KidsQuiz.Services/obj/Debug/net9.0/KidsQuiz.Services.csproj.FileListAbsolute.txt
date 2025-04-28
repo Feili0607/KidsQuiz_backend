@@ -4,7 +4,6 @@ D:\code\KidsQuiz\backend\KidsQuiz.Services\bin\Debug\net9.0\KidsQuiz.Services.pd
 D:\code\KidsQuiz\backend\KidsQuiz.Services\bin\Debug\net9.0\KidsQuiz.Services.xml
 D:\code\KidsQuiz\backend\KidsQuiz.Services\bin\Debug\net9.0\KidsQuiz.Data.dll
 D:\code\KidsQuiz\backend\KidsQuiz.Services\bin\Debug\net9.0\KidsQuiz.Data.pdb
-D:\code\KidsQuiz\backend\KidsQuiz.Services\bin\Debug\net9.0\KidsQuiz.Data.xml
 D:\code\KidsQuiz\backend\KidsQuiz.Services\obj\Debug\net9.0\KidsQuiz.Services.csproj.AssemblyReference.cache
 D:\code\KidsQuiz\backend\KidsQuiz.Services\obj\Debug\net9.0\KidsQuiz.Services.GeneratedMSBuildEditorConfig.editorconfig
 D:\code\KidsQuiz\backend\KidsQuiz.Services\obj\Debug\net9.0\KidsQuiz.Services.AssemblyInfoInputs.cache
