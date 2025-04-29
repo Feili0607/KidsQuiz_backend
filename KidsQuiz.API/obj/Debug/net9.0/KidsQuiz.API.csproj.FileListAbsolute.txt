@@ -5,3 +5,11 @@ D:\code\KidsQuiz\backend\KidsQuiz.API\obj\Debug\net9.0\KidsQuiz.API.AssemblyInfo
 D:\code\KidsQuiz\backend\KidsQuiz.API\obj\Debug\net9.0\KidsQuiz.API.csproj.CoreCompileInputs.cache
 D:\code\KidsQuiz\backend\KidsQuiz.API\obj\Debug\net9.0\KidsQuiz.API.MvcApplicationPartsAssemblyInfo.cs
 D:\code\KidsQuiz\backend\KidsQuiz.API\obj\Debug\net9.0\KidsQuiz.API.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\Fei Li\KidsQuiz\KidsQuiz_backend\KidsQuiz.API\obj\Debug\net9.0\KidsQuiz.API.csproj.AssemblyReference.cache
+C:\Users\Fei Li\KidsQuiz\KidsQuiz_backend\KidsQuiz.API\obj\Debug\net9.0\KidsQuiz.API.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Fei Li\KidsQuiz\KidsQuiz_backend\KidsQuiz.API\obj\Debug\net9.0\KidsQuiz.API.AssemblyInfoInputs.cache
+C:\Users\Fei Li\KidsQuiz\KidsQuiz_backend\KidsQuiz.API\obj\Debug\net9.0\KidsQuiz.API.AssemblyInfo.cs
+C:\Users\Fei Li\KidsQuiz\KidsQuiz_backend\KidsQuiz.API\obj\Debug\net9.0\KidsQuiz.API.csproj.CoreCompileInputs.cache
+C:\Users\Fei Li\KidsQuiz\KidsQuiz_backend\KidsQuiz.API\obj\Debug\net9.0\KidsQuiz.API.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\Fei Li\KidsQuiz\KidsQuiz_backend\KidsQuiz.API\obj\Debug\net9.0\KidsQuiz.API.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\Fei Li\KidsQuiz\KidsQuiz_backend\KidsQuiz.API\obj\Debug\net9.0\KidsQuiz.API.sourcelink.json

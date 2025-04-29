@@ -15,3 +15,21 @@ D:\code\KidsQuiz\backend\KidsQuiz.Services\obj\Debug\net9.0\refint\KidsQuiz.Serv
 D:\code\KidsQuiz\backend\KidsQuiz.Services\obj\Debug\net9.0\KidsQuiz.Services.xml
 D:\code\KidsQuiz\backend\KidsQuiz.Services\obj\Debug\net9.0\KidsQuiz.Services.pdb
 D:\code\KidsQuiz\backend\KidsQuiz.Services\obj\Debug\net9.0\ref\KidsQuiz.Services.dll
+C:\Users\Fei Li\KidsQuiz\KidsQuiz_backend\KidsQuiz.Services\bin\Debug\net9.0\KidsQuiz.Services.deps.json
+C:\Users\Fei Li\KidsQuiz\KidsQuiz_backend\KidsQuiz.Services\bin\Debug\net9.0\KidsQuiz.Services.dll
+C:\Users\Fei Li\KidsQuiz\KidsQuiz_backend\KidsQuiz.Services\bin\Debug\net9.0\KidsQuiz.Services.pdb
+C:\Users\Fei Li\KidsQuiz\KidsQuiz_backend\KidsQuiz.Services\bin\Debug\net9.0\KidsQuiz.Services.xml
+C:\Users\Fei Li\KidsQuiz\KidsQuiz_backend\KidsQuiz.Services\bin\Debug\net9.0\KidsQuiz.Data.dll
+C:\Users\Fei Li\KidsQuiz\KidsQuiz_backend\KidsQuiz.Services\bin\Debug\net9.0\KidsQuiz.Data.pdb
+C:\Users\Fei Li\KidsQuiz\KidsQuiz_backend\KidsQuiz.Services\obj\Debug\net9.0\KidsQuiz.Services.csproj.AssemblyReference.cache
+C:\Users\Fei Li\KidsQuiz\KidsQuiz_backend\KidsQuiz.Services\obj\Debug\net9.0\KidsQuiz.Services.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Fei Li\KidsQuiz\KidsQuiz_backend\KidsQuiz.Services\obj\Debug\net9.0\KidsQuiz.Services.AssemblyInfoInputs.cache
+C:\Users\Fei Li\KidsQuiz\KidsQuiz_backend\KidsQuiz.Services\obj\Debug\net9.0\KidsQuiz.Services.AssemblyInfo.cs
+C:\Users\Fei Li\KidsQuiz\KidsQuiz_backend\KidsQuiz.Services\obj\Debug\net9.0\KidsQuiz.Services.csproj.CoreCompileInputs.cache
+C:\Users\Fei Li\KidsQuiz\KidsQuiz_backend\KidsQuiz.Services\obj\Debug\net9.0\KidsQuiz.Services.sourcelink.json
+C:\Users\Fei Li\KidsQuiz\KidsQuiz_backend\KidsQuiz.Services\obj\Debug\net9.0\KidsQuiz.1824B3EA.Up2Date
+C:\Users\Fei Li\KidsQuiz\KidsQuiz_backend\KidsQuiz.Services\obj\Debug\net9.0\KidsQuiz.Services.dll
+C:\Users\Fei Li\KidsQuiz\KidsQuiz_backend\KidsQuiz.Services\obj\Debug\net9.0\refint\KidsQuiz.Services.dll
+C:\Users\Fei Li\KidsQuiz\KidsQuiz_backend\KidsQuiz.Services\obj\Debug\net9.0\KidsQuiz.Services.xml
+C:\Users\Fei Li\KidsQuiz\KidsQuiz_backend\KidsQuiz.Services\obj\Debug\net9.0\KidsQuiz.Services.pdb
+C:\Users\Fei Li\KidsQuiz\KidsQuiz_backend\KidsQuiz.Services\obj\Debug\net9.0\ref\KidsQuiz.Services.dll

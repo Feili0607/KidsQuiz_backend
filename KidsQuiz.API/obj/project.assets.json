@@ -10003,25 +10003,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\newco\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {},
-    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
+    "C:\\Users\\Fei Li\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\code\\KidsQuiz\\backend\\KidsQuiz.API\\KidsQuiz.API.csproj",
+      "projectUniqueName": "C:\\Users\\Fei Li\\KidsQuiz\\KidsQuiz_backend\\KidsQuiz.API\\KidsQuiz.API.csproj",
       "projectName": "KidsQuiz.API",
-      "projectPath": "D:\\code\\KidsQuiz\\backend\\KidsQuiz.API\\KidsQuiz.API.csproj",
-      "packagesPath": "C:\\Users\\newco\\.nuget\\packages\\",
-      "outputPath": "D:\\code\\KidsQuiz\\backend\\KidsQuiz.API\\obj\\",
+      "projectPath": "C:\\Users\\Fei Li\\KidsQuiz\\KidsQuiz_backend\\KidsQuiz.API\\KidsQuiz.API.csproj",
+      "packagesPath": "C:\\Users\\Fei Li\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Fei Li\\KidsQuiz\\KidsQuiz_backend\\KidsQuiz.API\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
-        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\newco\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Fei Li\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -10036,11 +10034,11 @@
         "net9.0": {
           "targetAlias": "net9.0",
           "projectReferences": {
-            "D:\\code\\KidsQuiz\\backend\\KidsQuiz.Data\\KidsQuiz.Data.csproj": {
-              "projectPath": "D:\\code\\KidsQuiz\\backend\\KidsQuiz.Data\\KidsQuiz.Data.csproj"
+            "C:\\Users\\Fei Li\\KidsQuiz\\KidsQuiz_backend\\KidsQuiz.Data\\KidsQuiz.Data.csproj": {
+              "projectPath": "C:\\Users\\Fei Li\\KidsQuiz\\KidsQuiz_backend\\KidsQuiz.Data\\KidsQuiz.Data.csproj"
             },
-            "D:\\code\\KidsQuiz\\backend\\KidsQuiz.Services\\KidsQuiz.Services.csproj": {
-              "projectPath": "D:\\code\\KidsQuiz\\backend\\KidsQuiz.Services\\KidsQuiz.Services.csproj"
+            "C:\\Users\\Fei Li\\KidsQuiz\\KidsQuiz_backend\\KidsQuiz.Services\\KidsQuiz.Services.csproj": {
+              "projectPath": "C:\\Users\\Fei Li\\KidsQuiz\\KidsQuiz_backend\\KidsQuiz.Services\\KidsQuiz.Services.csproj"
             }
           }
         }
