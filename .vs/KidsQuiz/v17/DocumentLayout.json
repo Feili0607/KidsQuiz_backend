@@ -3,6 +3,10 @@
   "WorkspaceRootPath": "C:\\Users\\Fei Li\\KidsQuiz\\KidsQuiz_backend\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{CE472812-D0E2-4802-A6B4-3CC33DBAC816}|KidsQuiz.API\\KidsQuiz.API.csproj|c:\\users\\fei li\\kidsquiz\\kidsquiz_backend\\kidsquiz.api\\extensions\\loggingextensions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CE472812-D0E2-4802-A6B4-3CC33DBAC816}|KidsQuiz.API\\KidsQuiz.API.csproj|solutionrelative:kidsquiz.api\\extensions\\loggingextensions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}|NewFolder1{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}|C:\\Users\\Fei Li\\KidsQuiz\\KidsQuiz_backend\\.gitignore||{3B902123-F8A7-4915-9F01-361F908088D0}",
       "RelativeMoniker": "D:0:0:{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}|NewFolder1{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}|solutionrelative:.gitignore||{3B902123-F8A7-4915-9F01-361F908088D0}"
     },
@@ -27,19 +31,32 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "LoggingExtensions.cs",
+              "DocumentMoniker": "C:\\Users\\Fei Li\\KidsQuiz\\KidsQuiz_backend\\KidsQuiz.API\\Extensions\\LoggingExtensions.cs",
+              "RelativeDocumentMoniker": "KidsQuiz.API\\Extensions\\LoggingExtensions.cs",
+              "ToolTip": "C:\\Users\\Fei Li\\KidsQuiz\\KidsQuiz_backend\\KidsQuiz.API\\Extensions\\LoggingExtensions.cs",
+              "RelativeToolTip": "KidsQuiz.API\\Extensions\\LoggingExtensions.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAkAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-29T00:32:11.415Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
               "Title": ".gitignore",
               "DocumentMoniker": "C:\\Users\\Fei Li\\KidsQuiz\\KidsQuiz_backend\\.gitignore",
               "RelativeDocumentMoniker": ".gitignore",
               "ToolTip": "C:\\Users\\Fei Li\\KidsQuiz\\KidsQuiz_backend\\.gitignore",
               "RelativeToolTip": ".gitignore",
-              "ViewState": "AgIAAF0BAAAAAAAAAAAIwJABAAAJAAAAAAAAAA==",
+              "ViewState": "AgIAADwBAAAAAAAAAAAIwE8BAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
               "WhenOpened": "2025-04-29T00:29:04.723Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "Kid.cs",
               "DocumentMoniker": "C:\\Users\\Fei Li\\KidsQuiz\\KidsQuiz_backend\\KidsQuiz.Data\\Models\\Kid.cs",
               "RelativeDocumentMoniker": "KidsQuiz.Data\\Models\\Kid.cs",
@@ -52,7 +69,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "KidsQuiz.API",
               "DocumentMoniker": "C:\\Users\\Fei Li\\KidsQuiz\\KidsQuiz_backend\\KidsQuiz.API\\KidsQuiz.API.csproj",
               "RelativeDocumentMoniker": "KidsQuiz.API\\KidsQuiz.API.csproj",
