@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 using KidsQuiz.Services.Exceptions;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Model;
 
 namespace KidsQuiz.API.Middleware
 {
@@ -56,19 +57,28 @@ namespace KidsQuiz.API.Middleware
                 case QuizValidationException validationEx:
                     context.Response.StatusCode = (int)HttpStatusCode.BadRequest;
                     response.Message = "Validation error";
-                    response.ValidationErrors = validationEx.ValidationErrors;
-                    break;
+                    response.ValidationErrors = new Dictionary<string, string[]>
+                    {
+                        { "Errors", validationEx.ValidationErrors.ToArray() }
+                    };
+                     break;
 
-                case QuizRecordValidationException validationEx:
+                case QuizRecordValidationException recordValidationEx:
                     context.Response.StatusCode = (int)HttpStatusCode.BadRequest;
                     response.Message = "Validation error";
-                    response.ValidationErrors = validationEx.ValidationErrors;
+                    response.ValidationErrors = recordValidationEx.ValidationErrors.ToDictionary
+                    (
+                        kvp => kvp.Key,
+                        kvp => new string[] { kvp.Value }
+                    );
                     break;
+
 
                 case QuizGenerationException:
                     context.Response.StatusCode = (int)HttpStatusCode.BadRequest;
                     response.Message = "Failed to generate quiz";
                     break;
+
 
                 default:
                     _logger.LogError(exception, "An unhandled exception occurred");

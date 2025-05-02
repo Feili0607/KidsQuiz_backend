@@ -1,25 +1,23 @@
 {
     "version": "0.2.0",
     "configurations": [
-        {
-            "name": "KidsQuiz API",
-            "type": "coreclr",
-            "request": "launch",
-            "preLaunchTask": "build",
-            "program": "${workspaceFolder}/KidsQuiz.API/bin/Debug/net9.0/KidsQuiz.API.dll",
-            "args": [],
-            "cwd": "${workspaceFolder}/KidsQuiz.API",
-            "stopAtEntry": false,
-            "serverReadyAction": {
-                "action": "openExternally",
-                "pattern": "\\bNow listening on:\\s+(https?://\\S+)"
-            },
-            "env": {
-                "ASPNETCORE_ENVIRONMENT": "Development"
-            },
-            "sourceFileMap": {
-                "/Views": "${workspaceFolder}/Views"
-            }
+      {
+        "name": "KidsQuiz API Launch",
+        "type": "coreclr",
+        "request": "launch",
+        "preLaunchTask": "build",
+        "program": "${workspaceFolder}/KidsQuiz.API/bin/Debug/net9.0/KidsQuiz.API.dll",
+        "args": [],
+        "cwd": "${workspaceFolder}/KidsQuiz.API",
+        "stopAtEntry": false,
+        "serverReadyAction": {
+          "action": "openExternally",
+          "pattern": "\\bNow listening on:\\s+(https?://\\S+)"
+        },
+        "env": {
+          "ASPNETCORE_ENVIRONMENT": "Development"
         }
+      }
     ]
-} 
+  }
+  

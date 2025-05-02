@@ -22,7 +22,8 @@ builder.Services.AddMemoryCache();
 builder.Services.AddScoped<ICacheService, CacheService>();
 
 // Add Application Insights
-Microsoft.Extensions.DependencyInjection.ApplicationInsightsExtensions.AddApplicationInsightsTelemetry(builder.Services, builder.Configuration);
+KidsQuiz.API.Extensions.LoggingExtensions.AddApplicationInsightsTelemetry(builder.Services, builder.Configuration);
+
 
 // Add controllers
 builder.Services.AddControllers();
@@ -39,6 +40,7 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 builder.Services.AddScoped<IKidService, KidService>();
 builder.Services.AddScoped<IQuizService, QuizService>();
 builder.Services.AddScoped<IQuizSolvingRecordService, QuizSolvingRecordService>();
+
 
 var app = builder.Build();
 
@@ -60,6 +62,7 @@ app.MapControllers();
 try
 {
     Log.Information("Starting KidsQuiz API");
+    app.MapGet("/", () => Results.Ok("KidsQuiz API is running."));
     app.Run();
 }
 catch (Exception ex)
@@ -70,3 +73,14 @@ finally
 {
     Log.CloseAndFlush();
 }
+
+app.Use(async (context, next) =>
+{
+    if (context.Request.Path == "/")
+    {
+        context.Response.Redirect("/swagger");
+        return;
+    }
+    await next();
+});
+
