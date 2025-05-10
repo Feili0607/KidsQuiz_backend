@@ -1,6 +1,8 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
 using KidsQuiz.Data.Models;
+using System.Text.Json;
 
 namespace KidsQuiz.Data.Configurations
 {
@@ -17,8 +19,18 @@ namespace KidsQuiz.Data.Configurations
             builder.Property(q => q.EstimatedDurationMinutes).IsRequired();
 
             // Configure the Labels as a JSON array
-            builder.Property(q => q.Labels)
-                .HasColumnType("jsonb");
+            var property = builder.Property(q => q.Labels)
+                .HasColumnType("nvarchar(max)")
+                .HasConversion(
+                    v => JsonSerializer.Serialize(v, (JsonSerializerOptions)null),
+                    v => JsonSerializer.Deserialize<List<string>>(v, (JsonSerializerOptions)null) ?? new List<string>()
+                );
+
+            property.Metadata.SetValueComparer(new ValueComparer<List<string>>(
+                (c1, c2) => c1.SequenceEqual(c2),
+                c => c.Aggregate(0, (a, v) => HashCode.Combine(a, v.GetHashCode())),
+                c => c.ToList()
+            ));
 
             // Add indexes
             builder.HasIndex(q => q.DifficultyLevel);

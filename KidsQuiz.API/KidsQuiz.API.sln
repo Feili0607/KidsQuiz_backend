@@ -1,0 +1,24 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.2.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KidsQuiz.API", "KidsQuiz.API.csproj", "{C404127F-5CE2-F3C6-5792-D8678E70FFAA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C404127F-5CE2-F3C6-5792-D8678E70FFAA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C404127F-5CE2-F3C6-5792-D8678E70FFAA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C404127F-5CE2-F3C6-5792-D8678E70FFAA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C404127F-5CE2-F3C6-5792-D8678E70FFAA}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F32294C2-0BCF-4D68-BCC7-CF095FC22E5F}
+	EndGlobalSection
+EndGlobal
