@@ -1,4 +1,4 @@
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using KidsQuiz.API.Extensions;
@@ -10,6 +10,17 @@ using KidsQuiz.Services.Interfaces;
 using KidsQuiz.Services.Services;
 
 var builder = WebApplication.CreateBuilder(args);
+
+const string CorsPolicyName = "AllowFrontend";
+
+// Add CORS policy
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy(CorsPolicyName,
+        policy => policy.SetIsOriginAllowed(origin => new Uri(origin).Host == "localhost")
+                        .AllowAnyHeader()
+                        .AllowAnyMethod());
+});
 
 // Configure logging
 builder.Host.ConfigureLogging(builder.Configuration);
@@ -44,16 +55,18 @@ builder.Services.AddScoped<IQuizSolvingRecordService, QuizSolvingRecordService>(
 
 var app = builder.Build();
 
+app.UseCors(CorsPolicyName);
+
 // Configure the HTTP request pipeline
 app.UseSwagger();
 app.UseSwaggerUI(c =>
 {
     c.SwaggerEndpoint("/swagger/v1/swagger.json", "KidsQuiz API V1");
-    c.RoutePrefix = string.Empty; // Optional: Serve Swagger UI at root "/"
+    //c.RoutePrefix = /swagger/v1; // Optional: Serve Swagger UI at root "/"
 });
 
 
-app.UseHttpsRedirection();
+//app.UseHttpsRedirection();
 app.UseAuthorization();
 
 // Use custom middleware
