@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using KidsQuiz.Services.Interfaces;
 using KidsQuiz.Services.DTOs.Quizzes;
 using KidsQuiz.Services.Exceptions;
+using KidsQuiz.Services.Helpers;
 
 namespace KidsQuiz.API.Controllers
 {
@@ -37,6 +38,23 @@ namespace KidsQuiz.API.Controllers
             catch (QuizNotFoundException)
             {
                 return NotFound();
+            }
+        }
+
+        [HttpGet("by-grade/{grade}")]
+        public async Task<ActionResult<IEnumerable<QuizDto>>> GetQuizzesByGrade(string grade)
+        {
+            try
+            {
+                var ageGroup = GradeToAgeGroupMapper.MapGradeToAgeGroup(grade);
+                var difficultyLevel = (int)GradeToAgeGroupMapper.GetRecommendedDifficultyLevel(grade);
+                
+                var quizzes = await _quizService.GetQuizzesByAgeGroupAndDifficultyAsync(ageGroup, difficultyLevel);
+                return Ok(quizzes);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
             }
         }
 

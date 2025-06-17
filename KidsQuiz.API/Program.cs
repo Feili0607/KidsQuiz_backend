@@ -51,7 +51,9 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 builder.Services.AddScoped<IKidService, KidService>();
 builder.Services.AddScoped<IQuizService, QuizService>();
 builder.Services.AddScoped<IQuizSolvingRecordService, QuizSolvingRecordService>();
-
+builder.Services.AddScoped<IQuestionBankService, QuestionBankService>();
+builder.Services.AddScoped<IExternalQuizService, ExternalQuizService>();
+builder.Services.AddHttpClient();
 
 var app = builder.Build();
 

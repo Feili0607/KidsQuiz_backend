@@ -11,6 +11,7 @@ namespace KidsQuiz.Services.DTOs.Kids
         public DateTime DateOfBirth { get; set; }
         public string Email { get; set; }
         public string Intro { get; set; }
+        public string Grade { get; set; }
 
         public Dictionary<string, object> Properties { get; set; } = new Dictionary<string, object>();
         public DateTime CreatedAt { get; set; }

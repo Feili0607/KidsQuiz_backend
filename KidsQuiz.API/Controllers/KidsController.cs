@@ -40,6 +40,30 @@ namespace KidsQuiz.API.Controllers
             }
         }
 
+        [HttpPost("register")]
+        public async Task<ActionResult<KidDto>> RegisterKid([FromBody] KidCreateDto kidCreateDto)
+        {
+            try
+            {
+                // Validate required fields
+                if (string.IsNullOrWhiteSpace(kidCreateDto.Name))
+                    return BadRequest("Name is required");
+                if (string.IsNullOrWhiteSpace(kidCreateDto.Email))
+                    return BadRequest("Email is required");
+                if (string.IsNullOrWhiteSpace(kidCreateDto.Grade))
+                    return BadRequest("Grade is required");
+                if (kidCreateDto.DateOfBirth == default)
+                    return BadRequest("Date of birth is required");
+
+                var kid = await _kidsService.CreateKidAsync(kidCreateDto);
+                return CreatedAtAction(nameof(GetKid), new { id = kid.Id }, kid);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
         [HttpPost]
         public async Task<ActionResult<KidDto>> CreateKid(KidCreateDto kidCreateDto)
         {

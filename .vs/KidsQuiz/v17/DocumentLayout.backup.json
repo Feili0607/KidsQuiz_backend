@@ -3,6 +3,18 @@
   "WorkspaceRootPath": "C:\\Users\\Fei Li\\KidsQuiz\\KidsQuiz_backend\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{CE472812-D0E2-4802-A6B4-3CC33DBAC816}|KidsQuiz.API\\KidsQuiz.API.csproj|c:\\users\\fei li\\kidsquiz\\kidsquiz_backend\\kidsquiz.api\\dockerfile||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{CE472812-D0E2-4802-A6B4-3CC33DBAC816}|KidsQuiz.API\\KidsQuiz.API.csproj|solutionrelative:kidsquiz.api\\dockerfile||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CE472812-D0E2-4802-A6B4-3CC33DBAC816}|KidsQuiz.API\\KidsQuiz.API.csproj|c:\\users\\fei li\\kidsquiz\\kidsquiz_backend\\kidsquiz.api\\middleware\\exceptionhandlingmiddleware.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CE472812-D0E2-4802-A6B4-3CC33DBAC816}|KidsQuiz.API\\KidsQuiz.API.csproj|solutionrelative:kidsquiz.api\\middleware\\exceptionhandlingmiddleware.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}|Solution Items{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}|C:\\Users\\Fei Li\\KidsQuiz\\KidsQuiz_backend\\.gitignore||{3B902123-F8A7-4915-9F01-361F908088D0}",
+      "RelativeMoniker": "D:0:0:{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}|Solution Items{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}|solutionrelative:.gitignore||{3B902123-F8A7-4915-9F01-361F908088D0}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{CE472812-D0E2-4802-A6B4-3CC33DBAC816}|KidsQuiz.API\\KidsQuiz.API.csproj|c:\\users\\fei li\\kidsquiz\\kidsquiz_backend\\kidsquiz.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{CE472812-D0E2-4802-A6B4-3CC33DBAC816}|KidsQuiz.API\\KidsQuiz.API.csproj|solutionrelative:kidsquiz.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -43,23 +55,11 @@
       "RelativeMoniker": "D:0:0:{CE472812-D0E2-4802-A6B4-3CC33DBAC816}|KidsQuiz.API\\KidsQuiz.API.csproj|solutionrelative:kidsquiz.api\\extensions\\loggingextensions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{CE472812-D0E2-4802-A6B4-3CC33DBAC816}|KidsQuiz.API\\KidsQuiz.API.csproj|c:\\users\\fei li\\kidsquiz\\kidsquiz_backend\\kidsquiz.api\\logs\\kidsquiz-20250502_002.log||{8B382828-6202-11D1-8870-0000F87579D2}",
-      "RelativeMoniker": "D:0:0:{CE472812-D0E2-4802-A6B4-3CC33DBAC816}|KidsQuiz.API\\KidsQuiz.API.csproj|solutionrelative:kidsquiz.api\\logs\\kidsquiz-20250502_002.log||{8B382828-6202-11D1-8870-0000F87579D2}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{E59E288E-542F-479A-9B84-F421B4C37212}|KidsQuiz.Services\\KidsQuiz.Services.csproj|c:\\users\\fei li\\kidsquiz\\kidsquiz_backend\\kidsquiz.services\\services\\kidservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{E59E288E-542F-479A-9B84-F421B4C37212}|KidsQuiz.Services\\KidsQuiz.Services.csproj|solutionrelative:kidsquiz.services\\services\\kidservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{CE472812-D0E2-4802-A6B4-3CC33DBAC816}|KidsQuiz.API\\KidsQuiz.API.csproj|c:\\users\\fei li\\kidsquiz\\kidsquiz_backend\\kidsquiz.api\\middleware\\exceptionhandlingmiddleware.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CE472812-D0E2-4802-A6B4-3CC33DBAC816}|KidsQuiz.API\\KidsQuiz.API.csproj|solutionrelative:kidsquiz.api\\middleware\\exceptionhandlingmiddleware.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Fei Li\\AppData\\Local\\SourceServer\\37bb501472a97f4c1f579be4cea3ffde4c26eb112789320ecd22230601f35781\\KidsQuiz.API\\Program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{CE472812-D0E2-4802-A6B4-3CC33DBAC816}|KidsQuiz.API\\KidsQuiz.API.csproj|c:\\users\\fei li\\kidsquiz\\kidsquiz_backend\\kidsquiz.api\\logs\\kidsquiz-20250502_001.log||{8B382828-6202-11D1-8870-0000F87579D2}",
-      "RelativeMoniker": "D:0:0:{CE472812-D0E2-4802-A6B4-3CC33DBAC816}|KidsQuiz.API\\KidsQuiz.API.csproj|solutionrelative:kidsquiz.api\\logs\\kidsquiz-20250502_001.log||{8B382828-6202-11D1-8870-0000F87579D2}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\MSBuild\\Current\\Bin\\amd64\\Microsoft.Common.CurrentVersion.targets||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
@@ -83,10 +83,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{CE472812-D0E2-4802-A6B4-3CC33DBAC816}|KidsQuiz.API\\KidsQuiz.API.csproj|c:\\users\\fei li\\kidsquiz\\kidsquiz_backend\\kidsquiz.api\\kidsquiz.api.csproj||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|",
       "RelativeMoniker": "D:0:0:{CE472812-D0E2-4802-A6B4-3CC33DBAC816}|KidsQuiz.API\\KidsQuiz.API.csproj|solutionrelative:kidsquiz.api\\kidsquiz.api.csproj||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}|Solution Items{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}|C:\\Users\\Fei Li\\KidsQuiz\\KidsQuiz_backend\\.gitignore||{3B902123-F8A7-4915-9F01-361F908088D0}",
-      "RelativeMoniker": "D:0:0:{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}|Solution Items{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}|solutionrelative:.gitignore||{3B902123-F8A7-4915-9F01-361F908088D0}"
     }
   ],
   "DocumentGroupContainers": [
@@ -96,56 +92,8 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 11,
+          "SelectedChildIndex": 3,
           "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "QuizController.cs",
-              "DocumentMoniker": "C:\\Users\\Fei Li\\KidsQuiz\\KidsQuiz_backend\\KidsQuiz.API\\Controllers\\QuizController.cs",
-              "RelativeDocumentMoniker": "KidsQuiz.API\\Controllers\\QuizController.cs",
-              "ToolTip": "C:\\Users\\Fei Li\\KidsQuiz\\KidsQuiz_backend\\KidsQuiz.API\\Controllers\\QuizController.cs",
-              "RelativeToolTip": "KidsQuiz.API\\Controllers\\QuizController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-21T02:17:33.733Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "QuizSolvingRecordsController.cs",
-              "DocumentMoniker": "C:\\Users\\Fei Li\\KidsQuiz\\KidsQuiz_backend\\KidsQuiz.API\\Controllers\\QuizSolvingRecordsController.cs",
-              "RelativeDocumentMoniker": "KidsQuiz.API\\Controllers\\QuizSolvingRecordsController.cs",
-              "ToolTip": "C:\\Users\\Fei Li\\KidsQuiz\\KidsQuiz_backend\\KidsQuiz.API\\Controllers\\QuizSolvingRecordsController.cs",
-              "RelativeToolTip": "KidsQuiz.API\\Controllers\\QuizSolvingRecordsController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-21T02:17:29.496Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "kidsquiz-20250502_002.log",
-              "DocumentMoniker": "C:\\Users\\Fei Li\\KidsQuiz\\KidsQuiz_backend\\KidsQuiz.API\\logs\\kidsquiz-20250502_002.log",
-              "RelativeDocumentMoniker": "KidsQuiz.API\\logs\\kidsquiz-20250502_002.log",
-              "ToolTip": "C:\\Users\\Fei Li\\KidsQuiz\\KidsQuiz_backend\\KidsQuiz.API\\logs\\kidsquiz-20250502_002.log",
-              "RelativeToolTip": "KidsQuiz.API\\logs\\kidsquiz-20250502_002.log",
-              "ViewState": "AgIAAMQAAAAAAAAAAAD4vzgBAAAJAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
-              "WhenOpened": "2025-05-21T00:55:27.807Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "RequestLoggingMiddleware.cs",
-              "DocumentMoniker": "C:\\Users\\Fei Li\\KidsQuiz\\KidsQuiz_backend\\KidsQuiz.API\\Middleware\\RequestLoggingMiddleware.cs",
-              "RelativeDocumentMoniker": "KidsQuiz.API\\Middleware\\RequestLoggingMiddleware.cs",
-              "ToolTip": "C:\\Users\\Fei Li\\KidsQuiz\\KidsQuiz_backend\\KidsQuiz.API\\Middleware\\RequestLoggingMiddleware.cs",
-              "RelativeToolTip": "KidsQuiz.API\\Middleware\\RequestLoggingMiddleware.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-21T00:54:38.976Z"
-            },
             {
               "$type": "Document",
               "DocumentIndex": 15,
@@ -160,7 +108,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 10,
               "Title": "appsettings.json",
               "DocumentMoniker": "C:\\Users\\Fei Li\\KidsQuiz\\KidsQuiz_backend\\KidsQuiz.API\\appsettings.json",
               "RelativeDocumentMoniker": "KidsQuiz.API\\appsettings.json",
@@ -172,7 +120,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 9,
               "Title": "appsettings.Development.json",
               "DocumentMoniker": "C:\\Users\\Fei Li\\KidsQuiz\\KidsQuiz_backend\\KidsQuiz.API\\appsettings.Development.json",
               "RelativeDocumentMoniker": "KidsQuiz.API\\appsettings.Development.json",
@@ -181,6 +129,31 @@
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
               "WhenOpened": "2025-04-30T00:46:15.327Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Dockerfile",
+              "DocumentMoniker": "C:\\Users\\Fei Li\\KidsQuiz\\KidsQuiz_backend\\KidsQuiz.API\\Dockerfile",
+              "RelativeDocumentMoniker": "KidsQuiz.API\\Dockerfile",
+              "ToolTip": "C:\\Users\\Fei Li\\KidsQuiz\\KidsQuiz_backend\\KidsQuiz.API\\Dockerfile",
+              "RelativeToolTip": "KidsQuiz.API\\Dockerfile",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2025-06-05T10:01:11.546Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "RequestLoggingMiddleware.cs",
+              "DocumentMoniker": "C:\\Users\\Fei Li\\KidsQuiz\\KidsQuiz_backend\\KidsQuiz.API\\Middleware\\RequestLoggingMiddleware.cs",
+              "RelativeDocumentMoniker": "KidsQuiz.API\\Middleware\\RequestLoggingMiddleware.cs",
+              "ToolTip": "C:\\Users\\Fei Li\\KidsQuiz\\KidsQuiz_backend\\KidsQuiz.API\\Middleware\\RequestLoggingMiddleware.cs",
+              "RelativeToolTip": "KidsQuiz.API\\Middleware\\RequestLoggingMiddleware.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-21T00:54:38.976Z"
             },
             {
               "$type": "Document",
@@ -196,7 +169,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 11,
               "Title": "ApplicationDbContext.cs",
               "DocumentMoniker": "C:\\Users\\Fei Li\\KidsQuiz\\KidsQuiz_backend\\KidsQuiz.Data\\ApplicationDbContext.cs",
               "RelativeDocumentMoniker": "KidsQuiz.Data\\ApplicationDbContext.cs",
@@ -208,7 +181,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 4,
               "Title": "KidsController.cs",
               "DocumentMoniker": "C:\\Users\\Fei Li\\KidsQuiz\\KidsQuiz_backend\\KidsQuiz.API\\Controllers\\KidsController.cs",
               "RelativeDocumentMoniker": "KidsQuiz.API\\Controllers\\KidsController.cs",
@@ -220,7 +193,57 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 2,
+              "Title": ".gitignore",
+              "DocumentMoniker": "C:\\Users\\Fei Li\\KidsQuiz\\KidsQuiz_backend\\.gitignore",
+              "RelativeDocumentMoniker": ".gitignore",
+              "ToolTip": "C:\\Users\\Fei Li\\KidsQuiz\\KidsQuiz_backend\\.gitignore",
+              "RelativeToolTip": ".gitignore",
+              "ViewState": "AgIAADwBAAAAAAAAAAAIwE8BAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2025-04-29T00:29:04.723Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "ExceptionHandlingMiddleware.cs",
+              "DocumentMoniker": "C:\\Users\\Fei Li\\KidsQuiz\\KidsQuiz_backend\\KidsQuiz.API\\Middleware\\ExceptionHandlingMiddleware.cs",
+              "RelativeDocumentMoniker": "KidsQuiz.API\\Middleware\\ExceptionHandlingMiddleware.cs",
+              "ToolTip": "C:\\Users\\Fei Li\\KidsQuiz\\KidsQuiz_backend\\KidsQuiz.API\\Middleware\\ExceptionHandlingMiddleware.cs",
+              "RelativeToolTip": "KidsQuiz.API\\Middleware\\ExceptionHandlingMiddleware.cs",
+              "ViewState": "AgIAAAUAAAAAAAAAAAAIwBwAAAAMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-29T00:33:34.434Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "QuizSolvingRecordsController.cs",
+              "DocumentMoniker": "C:\\Users\\Fei Li\\KidsQuiz\\KidsQuiz_backend\\KidsQuiz.API\\Controllers\\QuizSolvingRecordsController.cs",
+              "RelativeDocumentMoniker": "KidsQuiz.API\\Controllers\\QuizSolvingRecordsController.cs",
+              "ToolTip": "C:\\Users\\Fei Li\\KidsQuiz\\KidsQuiz_backend\\KidsQuiz.API\\Controllers\\QuizSolvingRecordsController.cs",
+              "RelativeToolTip": "KidsQuiz.API\\Controllers\\QuizSolvingRecordsController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-21T02:17:29.496Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "QuizController.cs",
+              "DocumentMoniker": "C:\\Users\\Fei Li\\KidsQuiz\\KidsQuiz_backend\\KidsQuiz.API\\Controllers\\QuizController.cs",
+              "RelativeDocumentMoniker": "KidsQuiz.API\\Controllers\\QuizController.cs",
+              "ToolTip": "C:\\Users\\Fei Li\\KidsQuiz\\KidsQuiz_backend\\KidsQuiz.API\\Controllers\\QuizController.cs",
+              "RelativeToolTip": "KidsQuiz.API\\Controllers\\QuizController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-21T02:17:33.733Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
               "Title": "launchSettings.json",
               "DocumentMoniker": "C:\\Users\\Fei Li\\KidsQuiz\\KidsQuiz_backend\\KidsQuiz.API\\Properties\\launchSettings.json",
               "RelativeDocumentMoniker": "KidsQuiz.API\\Properties\\launchSettings.json",
@@ -232,16 +255,15 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 3,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\Fei Li\\KidsQuiz\\KidsQuiz_backend\\KidsQuiz.API\\Program.cs",
               "RelativeDocumentMoniker": "KidsQuiz.API\\Program.cs",
               "ToolTip": "C:\\Users\\Fei Li\\KidsQuiz\\KidsQuiz_backend\\KidsQuiz.API\\Program.cs",
               "RelativeToolTip": "KidsQuiz.API\\Program.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAABaAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACQAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-29T01:14:00.085Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-29T01:14:00.085Z"
             },
             {
               "$type": "Document",
@@ -257,7 +279,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 12,
               "Title": "LoggingExtensions.cs",
               "DocumentMoniker": "C:\\Users\\Fei Li\\KidsQuiz\\KidsQuiz_backend\\KidsQuiz.API\\Extensions\\LoggingExtensions.cs",
               "RelativeDocumentMoniker": "KidsQuiz.API\\Extensions\\LoggingExtensions.cs",
@@ -269,7 +291,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 14,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\Fei Li\\AppData\\Local\\SourceServer\\37bb501472a97f4c1f579be4cea3ffde4c26eb112789320ecd22230601f35781\\KidsQuiz.API\\Program.cs",
               "RelativeDocumentMoniker": "..\\..\\AppData\\Local\\SourceServer\\37bb501472a97f4c1f579be4cea3ffde4c26eb112789320ecd22230601f35781\\KidsQuiz.API\\Program.cs",
@@ -281,7 +303,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 13,
               "Title": "KidService.cs",
               "DocumentMoniker": "C:\\Users\\Fei Li\\KidsQuiz\\KidsQuiz_backend\\KidsQuiz.Services\\Services\\KidService.cs",
               "RelativeDocumentMoniker": "KidsQuiz.Services\\Services\\KidService.cs",
@@ -305,42 +327,6 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
-              "Title": "ExceptionHandlingMiddleware.cs",
-              "DocumentMoniker": "C:\\Users\\Fei Li\\KidsQuiz\\KidsQuiz_backend\\KidsQuiz.API\\Middleware\\ExceptionHandlingMiddleware.cs",
-              "RelativeDocumentMoniker": "KidsQuiz.API\\Middleware\\ExceptionHandlingMiddleware.cs",
-              "ToolTip": "C:\\Users\\Fei Li\\KidsQuiz\\KidsQuiz_backend\\KidsQuiz.API\\Middleware\\ExceptionHandlingMiddleware.cs",
-              "RelativeToolTip": "KidsQuiz.API\\Middleware\\ExceptionHandlingMiddleware.cs",
-              "ViewState": "AgIAAAUAAAAAAAAAAAAIwBwAAAAMAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-29T00:33:34.434Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 14,
-              "Title": "kidsquiz-20250502_001.log",
-              "DocumentMoniker": "C:\\Users\\Fei Li\\KidsQuiz\\KidsQuiz_backend\\KidsQuiz.API\\logs\\kidsquiz-20250502_001.log",
-              "RelativeDocumentMoniker": "KidsQuiz.API\\logs\\kidsquiz-20250502_001.log",
-              "ToolTip": "C:\\Users\\Fei Li\\KidsQuiz\\KidsQuiz_backend\\KidsQuiz.API\\logs\\kidsquiz-20250502_001.log",
-              "RelativeToolTip": "KidsQuiz.API\\logs\\kidsquiz-20250502_001.log",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAE4AAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
-              "WhenOpened": "2025-05-02T01:28:46.611Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 21,
-              "Title": ".gitignore",
-              "DocumentMoniker": "C:\\Users\\Fei Li\\KidsQuiz\\KidsQuiz_backend\\.gitignore",
-              "RelativeDocumentMoniker": ".gitignore",
-              "ToolTip": "C:\\Users\\Fei Li\\KidsQuiz\\KidsQuiz_backend\\.gitignore",
-              "RelativeToolTip": ".gitignore",
-              "ViewState": "AgIAADwBAAAAAAAAAAAIwE8BAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
-              "WhenOpened": "2025-04-29T00:29:04.723Z"
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 16,
               "Title": "Kid.cs",
               "DocumentMoniker": "C:\\Users\\Fei Li\\KidsQuiz\\KidsQuiz_backend\\KidsQuiz.Data\\Models\\Kid.cs",
@@ -360,7 +346,8 @@
               "ToolTip": "C:\\Users\\Fei Li\\KidsQuiz\\KidsQuiz_backend\\KidsQuiz.API\\KidsQuiz.API.csproj",
               "RelativeToolTip": "KidsQuiz.API\\KidsQuiz.API.csproj",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2025-04-29T00:24:54.552Z"
+              "WhenOpened": "2025-04-29T00:24:54.552Z",
+              "EditorCaption": ""
             }
           ]
         }

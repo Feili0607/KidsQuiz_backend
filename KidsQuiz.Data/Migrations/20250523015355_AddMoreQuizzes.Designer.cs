@@ -4,6 +4,7 @@ using KidsQuiz.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace KidsQuiz.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250523015355_AddMoreQuizzes")]
+    partial class AddMoreQuizzes
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -38,10 +41,6 @@ namespace KidsQuiz.Data.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Email")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Grade")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -116,7 +115,7 @@ namespace KidsQuiz.Data.Migrations
                             Id = 1,
                             AudioUrl = "",
                             CorrectAnswerIndex = 1,
-                            CreatedAt = new DateTime(2025, 6, 17, 11, 21, 3, 697, DateTimeKind.Utc).AddTicks(7311),
+                            CreatedAt = new DateTime(2025, 5, 23, 1, 53, 55, 86, DateTimeKind.Utc).AddTicks(1422),
                             DifficultyLevel = 0,
                             Explanation = "2 + 3 = 5",
                             ImageUrl = "",
@@ -130,7 +129,7 @@ namespace KidsQuiz.Data.Migrations
                             Id = 2,
                             AudioUrl = "",
                             CorrectAnswerIndex = 1,
-                            CreatedAt = new DateTime(2025, 6, 17, 11, 21, 3, 697, DateTimeKind.Utc).AddTicks(7317),
+                            CreatedAt = new DateTime(2025, 5, 23, 1, 53, 55, 86, DateTimeKind.Utc).AddTicks(1425),
                             DifficultyLevel = 0,
                             Explanation = "5 - 2 = 3",
                             ImageUrl = "",
@@ -144,7 +143,7 @@ namespace KidsQuiz.Data.Migrations
                             Id = 3,
                             AudioUrl = "",
                             CorrectAnswerIndex = 2,
-                            CreatedAt = new DateTime(2025, 6, 17, 11, 21, 3, 697, DateTimeKind.Utc).AddTicks(7320),
+                            CreatedAt = new DateTime(2025, 5, 23, 1, 53, 55, 86, DateTimeKind.Utc).AddTicks(1428),
                             DifficultyLevel = 1,
                             Explanation = "4 × 2 = 8",
                             ImageUrl = "",
@@ -158,7 +157,7 @@ namespace KidsQuiz.Data.Migrations
                             Id = 4,
                             AudioUrl = "",
                             CorrectAnswerIndex = 0,
-                            CreatedAt = new DateTime(2025, 6, 17, 11, 21, 3, 697, DateTimeKind.Utc).AddTicks(7377),
+                            CreatedAt = new DateTime(2025, 5, 23, 1, 53, 55, 86, DateTimeKind.Utc).AddTicks(1471),
                             DifficultyLevel = 0,
                             Explanation = "Plants need both water and sunlight to grow properly",
                             ImageUrl = "",
@@ -172,7 +171,7 @@ namespace KidsQuiz.Data.Migrations
                             Id = 5,
                             AudioUrl = "",
                             CorrectAnswerIndex = 1,
-                            CreatedAt = new DateTime(2025, 6, 17, 11, 21, 3, 697, DateTimeKind.Utc).AddTicks(7380),
+                            CreatedAt = new DateTime(2025, 5, 23, 1, 53, 55, 86, DateTimeKind.Utc).AddTicks(1474),
                             DifficultyLevel = 1,
                             Explanation = "Mercury is the closest planet to the Sun in our solar system",
                             ImageUrl = "",
@@ -186,7 +185,7 @@ namespace KidsQuiz.Data.Migrations
                             Id = 6,
                             AudioUrl = "",
                             CorrectAnswerIndex = 2,
-                            CreatedAt = new DateTime(2025, 6, 17, 11, 21, 3, 697, DateTimeKind.Utc).AddTicks(7427),
+                            CreatedAt = new DateTime(2025, 5, 23, 1, 53, 55, 86, DateTimeKind.Utc).AddTicks(1513),
                             DifficultyLevel = 0,
                             Explanation = "A noun is a person, place, or thing. 'Dog' is a thing, so it's a noun.",
                             ImageUrl = "",
@@ -200,7 +199,7 @@ namespace KidsQuiz.Data.Migrations
                             Id = 7,
                             AudioUrl = "",
                             CorrectAnswerIndex = 1,
-                            CreatedAt = new DateTime(2025, 6, 17, 11, 21, 3, 697, DateTimeKind.Utc).AddTicks(7431),
+                            CreatedAt = new DateTime(2025, 5, 23, 1, 53, 55, 86, DateTimeKind.Utc).AddTicks(1516),
                             DifficultyLevel = 0,
                             Explanation = "The opposite of 'hot' is 'cold'",
                             ImageUrl = "",
@@ -214,7 +213,7 @@ namespace KidsQuiz.Data.Migrations
                             Id = 8,
                             AudioUrl = "",
                             CorrectAnswerIndex = 0,
-                            CreatedAt = new DateTime(2025, 6, 17, 11, 21, 3, 697, DateTimeKind.Utc).AddTicks(7434),
+                            CreatedAt = new DateTime(2025, 5, 23, 1, 53, 55, 86, DateTimeKind.Utc).AddTicks(1519),
                             DifficultyLevel = 1,
                             Explanation = "The correct sentence is 'I am going to the park' because it uses the correct present continuous tense.",
                             ImageUrl = "",
@@ -228,7 +227,7 @@ namespace KidsQuiz.Data.Migrations
                             Id = 9,
                             AudioUrl = "",
                             CorrectAnswerIndex = 1,
-                            CreatedAt = new DateTime(2025, 6, 17, 11, 21, 3, 697, DateTimeKind.Utc).AddTicks(7475),
+                            CreatedAt = new DateTime(2025, 5, 23, 1, 53, 55, 86, DateTimeKind.Utc).AddTicks(1555),
                             DifficultyLevel = 1,
                             Explanation = "12 × 8 = 96",
                             ImageUrl = "",
@@ -242,7 +241,7 @@ namespace KidsQuiz.Data.Migrations
                             Id = 10,
                             AudioUrl = "",
                             CorrectAnswerIndex = 2,
-                            CreatedAt = new DateTime(2025, 6, 17, 11, 21, 3, 697, DateTimeKind.Utc).AddTicks(7478),
+                            CreatedAt = new DateTime(2025, 5, 23, 1, 53, 55, 86, DateTimeKind.Utc).AddTicks(1557),
                             DifficultyLevel = 2,
                             Explanation = "x + 5 = 12, so x = 12 - 5 = 7",
                             ImageUrl = "",
@@ -256,7 +255,7 @@ namespace KidsQuiz.Data.Migrations
                             Id = 11,
                             AudioUrl = "",
                             CorrectAnswerIndex = 2,
-                            CreatedAt = new DateTime(2025, 6, 17, 11, 21, 3, 697, DateTimeKind.Utc).AddTicks(7481),
+                            CreatedAt = new DateTime(2025, 5, 23, 1, 53, 55, 86, DateTimeKind.Utc).AddTicks(1560),
                             DifficultyLevel = 1,
                             Explanation = "144 ÷ 12 = 12",
                             ImageUrl = "",
@@ -264,220 +263,6 @@ namespace KidsQuiz.Data.Migrations
                             Points = 15,
                             QuizId = 4,
                             Text = "What is 144 ÷ 12?"
-                        });
-                });
-
-            modelBuilder.Entity("KidsQuiz.Data.Models.QuestionBank", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("AudioUrl")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("Category")
-                        .HasColumnType("int");
-
-                    b.Property<int>("CorrectAnswerIndex")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("DifficultyLevel")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Explanation")
-                        .IsRequired()
-                        .HasMaxLength(1000)
-                        .HasColumnType("nvarchar(1000)");
-
-                    b.Property<string>("ImageUrl")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("IsActive")
-                        .HasColumnType("bit");
-
-                    b.Property<DateTime?>("ModifiedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Options")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("Points")
-                        .HasColumnType("int");
-
-                    b.Property<double>("SuccessRate")
-                        .HasColumnType("float");
-
-                    b.Property<string>("Tags")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("TargetAgeGroup")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Text")
-                        .IsRequired()
-                        .HasMaxLength(1000)
-                        .HasColumnType("nvarchar(1000)");
-
-                    b.Property<int>("UsageCount")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("Category");
-
-                    b.HasIndex("DifficultyLevel");
-
-                    b.HasIndex("IsActive");
-
-                    b.HasIndex("SuccessRate");
-
-                    b.HasIndex("TargetAgeGroup");
-
-                    b.ToTable("QuestionBanks");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            AudioUrl = "",
-                            Category = 1,
-                            CorrectAnswerIndex = 1,
-                            CreatedAt = new DateTime(2025, 6, 17, 11, 21, 3, 697, DateTimeKind.Utc).AddTicks(7496),
-                            DifficultyLevel = 0,
-                            Explanation = "2 + 3 = 5",
-                            ImageUrl = "",
-                            IsActive = true,
-                            Options = "[\"4\",\"5\",\"6\",\"7\"]",
-                            Points = 10,
-                            SuccessRate = 0.0,
-                            Tags = "[\"addition\",\"basic-math\"]",
-                            TargetAgeGroup = 1,
-                            Text = "What is 2 + 3?",
-                            UsageCount = 0
-                        },
-                        new
-                        {
-                            Id = 2,
-                            AudioUrl = "",
-                            Category = 1,
-                            CorrectAnswerIndex = 1,
-                            CreatedAt = new DateTime(2025, 6, 17, 11, 21, 3, 697, DateTimeKind.Utc).AddTicks(7509),
-                            DifficultyLevel = 0,
-                            Explanation = "5 - 2 = 3",
-                            ImageUrl = "",
-                            IsActive = true,
-                            Options = "[\"2\",\"3\",\"4\",\"5\"]",
-                            Points = 10,
-                            SuccessRate = 0.0,
-                            Tags = "[\"subtraction\",\"basic-math\"]",
-                            TargetAgeGroup = 1,
-                            Text = "What is 5 - 2?",
-                            UsageCount = 0
-                        },
-                        new
-                        {
-                            Id = 3,
-                            AudioUrl = "",
-                            Category = 1,
-                            CorrectAnswerIndex = 2,
-                            CreatedAt = new DateTime(2025, 6, 17, 11, 21, 3, 697, DateTimeKind.Utc).AddTicks(7519),
-                            DifficultyLevel = 1,
-                            Explanation = "4 × 2 = 8",
-                            ImageUrl = "",
-                            IsActive = true,
-                            Options = "[\"6\",\"7\",\"8\",\"9\"]",
-                            Points = 15,
-                            SuccessRate = 0.0,
-                            Tags = "[\"multiplication\",\"basic-math\"]",
-                            TargetAgeGroup = 1,
-                            Text = "What is 4 × 2?",
-                            UsageCount = 0
-                        },
-                        new
-                        {
-                            Id = 4,
-                            AudioUrl = "",
-                            Category = 0,
-                            CorrectAnswerIndex = 0,
-                            CreatedAt = new DateTime(2025, 6, 17, 11, 21, 3, 697, DateTimeKind.Utc).AddTicks(7527),
-                            DifficultyLevel = 0,
-                            Explanation = "Plants need both water and sunlight to grow properly",
-                            ImageUrl = "",
-                            IsActive = true,
-                            Options = "[\"Water and sunlight\",\"Only water\",\"Only sunlight\",\"Neither water nor sunlight\"]",
-                            Points = 10,
-                            SuccessRate = 0.0,
-                            Tags = "[\"plants\",\"biology\"]",
-                            TargetAgeGroup = 1,
-                            Text = "What do plants need to grow?",
-                            UsageCount = 0
-                        },
-                        new
-                        {
-                            Id = 5,
-                            AudioUrl = "",
-                            Category = 0,
-                            CorrectAnswerIndex = 1,
-                            CreatedAt = new DateTime(2025, 6, 17, 11, 21, 3, 697, DateTimeKind.Utc).AddTicks(7532),
-                            DifficultyLevel = 1,
-                            Explanation = "Mercury is the closest planet to the Sun in our solar system",
-                            ImageUrl = "",
-                            IsActive = true,
-                            Options = "[\"Venus\",\"Mercury\",\"Mars\",\"Earth\"]",
-                            Points = 15,
-                            SuccessRate = 0.0,
-                            Tags = "[\"planets\",\"solar-system\"]",
-                            TargetAgeGroup = 1,
-                            Text = "What is the closest planet to the Sun?",
-                            UsageCount = 0
-                        },
-                        new
-                        {
-                            Id = 6,
-                            AudioUrl = "",
-                            Category = 9,
-                            CorrectAnswerIndex = 2,
-                            CreatedAt = new DateTime(2025, 6, 17, 11, 21, 3, 697, DateTimeKind.Utc).AddTicks(7537),
-                            DifficultyLevel = 0,
-                            Explanation = "A noun is a person, place, or thing. 'Dog' is a thing, so it's a noun.",
-                            ImageUrl = "",
-                            IsActive = true,
-                            Options = "[\"Run\",\"Happy\",\"Dog\",\"Quickly\"]",
-                            Points = 10,
-                            SuccessRate = 0.0,
-                            Tags = "[\"grammar\",\"parts-of-speech\"]",
-                            TargetAgeGroup = 1,
-                            Text = "Which word is a noun?",
-                            UsageCount = 0
-                        },
-                        new
-                        {
-                            Id = 7,
-                            AudioUrl = "",
-                            Category = 9,
-                            CorrectAnswerIndex = 1,
-                            CreatedAt = new DateTime(2025, 6, 17, 11, 21, 3, 697, DateTimeKind.Utc).AddTicks(7540),
-                            DifficultyLevel = 0,
-                            Explanation = "The opposite of 'hot' is 'cold'",
-                            ImageUrl = "",
-                            IsActive = true,
-                            Options = "[\"Warm\",\"Cold\",\"Cool\",\"Wet\"]",
-                            Points = 10,
-                            SuccessRate = 0.0,
-                            Tags = "[\"vocabulary\",\"antonyms\"]",
-                            TargetAgeGroup = 1,
-                            Text = "What is the opposite of 'hot'?",
-                            UsageCount = 0
                         });
                 });
 
@@ -548,7 +333,7 @@ namespace KidsQuiz.Data.Migrations
                         {
                             Id = 1,
                             Content = "Basic arithmetic operations for young learners",
-                            CreatedAt = new DateTime(2025, 6, 17, 11, 21, 3, 697, DateTimeKind.Utc).AddTicks(7210),
+                            CreatedAt = new DateTime(2025, 5, 23, 1, 53, 55, 86, DateTimeKind.Utc).AddTicks(1344),
                             Description = "A fun quiz to test your basic math skills! Perfect for kids in grades 1-3.",
                             DifficultyLevel = 0,
                             EstimatedDurationMinutes = 10,
@@ -563,7 +348,7 @@ namespace KidsQuiz.Data.Migrations
                         {
                             Id = 2,
                             Content = "Basic science concepts for curious minds",
-                            CreatedAt = new DateTime(2025, 6, 17, 11, 21, 3, 697, DateTimeKind.Utc).AddTicks(7338),
+                            CreatedAt = new DateTime(2025, 5, 23, 1, 53, 55, 86, DateTimeKind.Utc).AddTicks(1436),
                             Description = "Test your knowledge about the world around us! Perfect for curious young minds.",
                             DifficultyLevel = 1,
                             EstimatedDurationMinutes = 15,
@@ -578,7 +363,7 @@ namespace KidsQuiz.Data.Migrations
                         {
                             Id = 3,
                             Content = "Basic English language skills for young learners",
-                            CreatedAt = new DateTime(2025, 6, 17, 11, 21, 3, 697, DateTimeKind.Utc).AddTicks(7388),
+                            CreatedAt = new DateTime(2025, 5, 23, 1, 53, 55, 86, DateTimeKind.Utc).AddTicks(1481),
                             Description = "Learn and practice basic English vocabulary and grammar!",
                             DifficultyLevel = 0,
                             EstimatedDurationMinutes = 12,
@@ -593,7 +378,7 @@ namespace KidsQuiz.Data.Migrations
                         {
                             Id = 4,
                             Content = "Advanced arithmetic and basic algebra for grades 4-6",
-                            CreatedAt = new DateTime(2025, 6, 17, 11, 21, 3, 697, DateTimeKind.Utc).AddTicks(7440),
+                            CreatedAt = new DateTime(2025, 5, 23, 1, 53, 55, 86, DateTimeKind.Utc).AddTicks(1524),
                             Description = "Test your math skills with these challenging problems!",
                             DifficultyLevel = 2,
                             EstimatedDurationMinutes = 20,

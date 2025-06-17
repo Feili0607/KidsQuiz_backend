@@ -10,6 +10,7 @@ namespace KidsQuiz.Services.DTOs.Kids
         public DateTime DateOfBirth { get; set; }
         public string Email { get; set; }
         public string Intro { get; set; }
+        public string Grade { get; set; }
         public List<InterestCategory> Interests { get; set; }
         public Dictionary<string, object> AdditionalProperties { get; set; }
     }

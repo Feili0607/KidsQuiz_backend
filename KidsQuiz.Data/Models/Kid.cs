@@ -10,6 +10,7 @@ namespace KidsQuiz.Data.Models
         public DateTime DateOfBirth { get; set; }
         public string Email { get; set; }
         public string Intro { get; set; }
+        public string Grade { get; set; }
         
         // Dictionary to store dynamic properties (hobbies, interests, etc.)
         public Dictionary<string, string> DynamicProperties { get; set; } = new Dictionary<string, string>();

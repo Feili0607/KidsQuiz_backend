@@ -1,12 +1,14 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using System.Linq;
 using KidsQuiz.Data.Models;
 using KidsQuiz.Services.Interfaces;
 using KidsQuiz.Services.DTOs.Quizzes;
 using KidsQuiz.Services.Exceptions;
 using KidsQuiz.Data;
 using Microsoft.EntityFrameworkCore;
+using KidsQuiz.Data.ValueObjects;
 
 namespace KidsQuiz.Services.Services
 {
@@ -42,7 +44,11 @@ namespace KidsQuiz.Services.Services
                 Description = quizCreateDto.Description,
                 Content = quizCreateDto.Content,
                 DifficultyLevel = quizCreateDto.DifficultyLevel,
-                Labels = quizCreateDto.Labels
+                Labels = quizCreateDto.Labels,
+                CreatedAt = DateTime.UtcNow,
+                EstimatedDurationMinutes = quizCreateDto.EstimatedDurationMinutes,
+                IsGeneratedByLLM = quizCreateDto.IsGeneratedByLLM,
+                LLMPrompt = quizCreateDto.LLMPrompt
             };
 
             _context.Quizzes.Add(quiz);
@@ -99,7 +105,8 @@ namespace KidsQuiz.Services.Services
             if (quiz == null)
                 throw new QuizNotFoundException(quizId);
 
-            quiz.Rating = (quiz.Rating + rating) / 2; // Simple average
+            quiz.Rating = (quiz.Rating * quiz.RatingCount + rating) / (quiz.RatingCount + 1);
+            quiz.RatingCount++;
             await _context.SaveChangesAsync();
         }
 
@@ -139,6 +146,18 @@ namespace KidsQuiz.Services.Services
         {
             var quizzes = await _context.Quizzes
                 .Where(q => q.DifficultyLevel == difficultyLevel)
+                .ToListAsync();
+
+            return quizzes.Select(MapToDto);
+        }
+
+        public async Task<IEnumerable<QuizDto>> GetQuizzesByAgeGroupAndDifficultyAsync(AgeGroup ageGroup, int difficultyLevel)
+        {
+            var ageGroupLabel = ageGroup.ToString().ToLower();
+            var quizzes = await _context.Quizzes
+                .Where(q => q.DifficultyLevel == difficultyLevel && 
+                           q.Labels.Contains(ageGroupLabel))
+                .OrderByDescending(q => q.Rating)
                 .ToListAsync();
 
             return quizzes.Select(MapToDto);

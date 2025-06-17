@@ -11,6 +11,8 @@ namespace KidsQuiz.Data.ValueObjects
         Sports,
         Animals,
         Technology,
-        Literature
+        Literature,
+        Entertainment,
+        General
     }
 } 

@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using KidsQuiz.Services.DTOs.Quizzes;
+using KidsQuiz.Data.ValueObjects;
 
 namespace KidsQuiz.Services.Interfaces
 {
@@ -24,5 +25,6 @@ namespace KidsQuiz.Services.Interfaces
         // Filtering
         Task<IEnumerable<QuizDto>> GetQuizzesByLabelsAsync(List<string> labels);
         Task<IEnumerable<QuizDto>> GetQuizzesByDifficultyAsync(int difficultyLevel);
+        Task<IEnumerable<QuizDto>> GetQuizzesByAgeGroupAndDifficultyAsync(AgeGroup ageGroup, int difficultyLevel);
     }
 } 
