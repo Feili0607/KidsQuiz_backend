@@ -54,6 +54,7 @@ builder.Services.AddScoped<IQuizSolvingRecordService, QuizSolvingRecordService>(
 builder.Services.AddScoped<IQuestionBankService, QuestionBankService>();
 builder.Services.AddScoped<IExternalQuizService, ExternalQuizService>();
 builder.Services.AddHttpClient();
+builder.Services.AddScoped<ILLMQuizService, LLMQuizService>();
 
 var app = builder.Build();
 
