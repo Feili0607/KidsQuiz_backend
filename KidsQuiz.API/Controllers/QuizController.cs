@@ -10,7 +10,7 @@ using KidsQuiz.Services.Helpers;
 namespace KidsQuiz.API.Controllers
 {
     [ApiController]
-    [Route("api/[controller]")]
+    [Route("api/quizzes")]
     public class QuizController : ControllerBase
     {
         private readonly IQuizService _quizService;
@@ -148,5 +148,32 @@ namespace KidsQuiz.API.Controllers
             var quizzes = await _quizService.GetQuizzesByDifficultyAsync(difficultyLevel);
             return Ok(quizzes);
         }
+
+        [HttpGet("user/{userId}")]
+        public async Task<ActionResult<IEnumerable<QuizDto>>> GetQuizzesForUser(int userId)
+        {
+            var quizzes = await _quizService.GetQuizzesByKidIdAsync(userId);
+            return Ok(quizzes);
+        }
+
+        [HttpPost("generate-openai")]
+        public async Task<ActionResult<QuizDto>> GenerateOpenAIQuiz([FromBody] GenerateOpenAIQuizRequest request)
+        {
+            try
+            {
+                var quiz = await _quizService.GenerateQuizUsingLLMAsync(request.UserInfo, request.UserId);
+                return Ok(quiz);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest($"Failed to generate quiz: {ex.Message}");
+            }
+        }
+    }
+
+    public class GenerateOpenAIQuizRequest
+    {
+        public int UserId { get; set; }
+        public UserInfoDto UserInfo { get; set; }
     }
 } 

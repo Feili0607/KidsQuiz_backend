@@ -64,6 +64,27 @@ namespace KidsQuiz.API.Controllers
             }
         }
 
+        [HttpPost("login")]
+        public async Task<ActionResult<KidDto>> LoginKid([FromBody] KidLoginDto loginDto)
+        {
+            try
+            {
+                if (string.IsNullOrWhiteSpace(loginDto.Email) || string.IsNullOrWhiteSpace(loginDto.Name))
+                    return BadRequest("Email and name are required");
+
+                var kid = await _kidsService.LoginKidAsync(loginDto.Email, loginDto.Name);
+                return Ok(kid);
+            }
+            catch (KidNotFoundException)
+            {
+                return NotFound("Kid not found with the provided email and name");
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
         [HttpPost]
         public async Task<ActionResult<KidDto>> CreateKid(KidCreateDto kidCreateDto)
         {

@@ -14,4 +14,10 @@ namespace KidsQuiz.Services.DTOs.Kids
         public List<InterestCategory> Interests { get; set; }
         public Dictionary<string, object> AdditionalProperties { get; set; }
     }
+
+    public class KidLoginDto
+    {
+        public string Email { get; set; }
+        public string Name { get; set; }
+    }
 } 

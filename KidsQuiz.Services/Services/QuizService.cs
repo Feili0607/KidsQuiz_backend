@@ -15,10 +15,12 @@ namespace KidsQuiz.Services.Services
     public class QuizService : IQuizService
     {
         private readonly ApplicationDbContext _context;
+        private readonly ILLMQuizService _llmQuizService;
 
-        public QuizService(ApplicationDbContext context)
+        public QuizService(ApplicationDbContext context, ILLMQuizService llmQuizService)
         {
             _context = context;
+            _llmQuizService = llmQuizService;
         }
 
         public async Task<QuizDto> GetQuizAsync(int id)
@@ -87,10 +89,20 @@ namespace KidsQuiz.Services.Services
             await _context.SaveChangesAsync();
         }
 
-        public async Task<QuizDto> GenerateQuizUsingLLMAsync(string prompt, int difficultyLevel)
+        public async Task<QuizDto> GenerateQuizUsingLLMAsync(UserInfoDto userInfo, int userId)
         {
-            // TODO: Implement LLM integration
-            throw new NotImplementedException();
+            // Call the LLM service to generate the full quiz content
+            var quiz = await _llmQuizService.GenerateFullQuizAsync(userInfo);
+
+            // Associate the quiz with the user
+            quiz.KidId = userId;
+
+            // Save the newly generated quiz to the database
+            _context.Quizzes.Add(quiz);
+            await _context.SaveChangesAsync();
+
+            // Map to DTO and return
+            return MapToDto(quiz);
         }
 
         public async Task<QuizDto> ModifyQuizUsingLLMAsync(int quizId, string modificationPrompt)
@@ -163,8 +175,20 @@ namespace KidsQuiz.Services.Services
             return quizzes.Select(MapToDto);
         }
 
+        public async Task<IEnumerable<QuizDto>> GetQuizzesByKidIdAsync(int kidId)
+        {
+            var quizzes = await _context.Quizzes
+                .Where(q => q.KidId == kidId)
+                .ToListAsync();
+
+            return quizzes.Select(MapToDto);
+        }
+
         private QuizDto MapToDto(Quiz quiz)
         {
+            if (quiz == null)
+                return null;
+
             return new QuizDto
             {
                 Id = quiz.Id,

@@ -42,6 +42,7 @@ namespace KidsQuiz.Services.Services
                 DateOfBirth = kidCreateDto.DateOfBirth,
                 Email = kidCreateDto.Email,
                 Intro = kidCreateDto.Intro,
+                Grade = kidCreateDto.Grade,
                 DynamicProperties = kidCreateDto.AdditionalProperties.ToDictionary(kvp => kvp.Key, kvp => kvp.Value.ToString())
             };
 
@@ -105,6 +106,17 @@ namespace KidsQuiz.Services.Services
             }
 
             await _context.SaveChangesAsync();
+        }
+
+        public async Task<KidDto> LoginKidAsync(string email, string name)
+        {
+            var kid = await _context.Kids
+                .FirstOrDefaultAsync(k => k.Email == email && k.Name == name);
+            
+            if (kid == null)
+                throw new KidNotFoundException(0); // We don't have the ID, so use 0
+
+            return MapToDto(kid);
         }
 
         private KidDto MapToDto(Kid kid)

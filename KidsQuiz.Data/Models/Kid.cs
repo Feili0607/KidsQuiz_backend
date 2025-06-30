@@ -17,5 +17,8 @@ namespace KidsQuiz.Data.Models
         
         // Navigation property for quiz solving records
         public ICollection<QuizSolvingRecord> QuizSolvingRecords { get; set; } = new List<QuizSolvingRecord>();
+        
+        // Navigation property for quizzes
+        public ICollection<Quiz> Quizzes { get; set; } = new List<Quiz>();
     }
 } 

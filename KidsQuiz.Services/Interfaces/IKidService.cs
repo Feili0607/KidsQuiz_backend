@@ -10,6 +10,7 @@ namespace KidsQuiz.Services.Interfaces
         Task<KidDto> GetKidAsync(int id);
         Task<IEnumerable<KidDto>> GetAllKidsAsync();
         Task<KidDto> CreateKidAsync(KidCreateDto kidCreateDto);
+        Task<KidDto> LoginKidAsync(string email, string name);
         Task UpdateKidAsync(int id, KidUpdateDto kidUpdateDto);
         Task DeleteKidAsync(int id);
         

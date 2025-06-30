@@ -301,7 +301,6 @@ C:\Users\Fei Li\KidsQuiz\KidsQuiz_backend\KidsQuiz.API\obj\Debug\net9.0\staticwe
 C:\Users\Fei Li\KidsQuiz\KidsQuiz_backend\KidsQuiz.API\obj\Debug\net9.0\staticwebassets\msbuild.buildMultiTargeting.KidsQuiz.API.props
 C:\Users\Fei Li\KidsQuiz\KidsQuiz_backend\KidsQuiz.API\obj\Debug\net9.0\staticwebassets\msbuild.buildTransitive.KidsQuiz.API.props
 C:\Users\Fei Li\KidsQuiz\KidsQuiz_backend\KidsQuiz.API\obj\Debug\net9.0\staticwebassets.pack.json
-C:\Users\Fei Li\KidsQuiz\KidsQuiz_backend\KidsQuiz.API\obj\Debug\net9.0\staticwebassets.upToDateCheck.txt
 C:\Users\Fei Li\KidsQuiz\KidsQuiz_backend\KidsQuiz.API\obj\Debug\net9.0\KidsQuiz.965F6D9B.Up2Date
 C:\Users\Fei Li\KidsQuiz\KidsQuiz_backend\KidsQuiz.API\obj\Debug\net9.0\KidsQuiz.API.dll
 C:\Users\Fei Li\KidsQuiz\KidsQuiz_backend\KidsQuiz.API\obj\Debug\net9.0\refint\KidsQuiz.API.dll
@@ -309,3 +308,4 @@ C:\Users\Fei Li\KidsQuiz\KidsQuiz_backend\KidsQuiz.API\obj\Debug\net9.0\KidsQuiz
 C:\Users\Fei Li\KidsQuiz\KidsQuiz_backend\KidsQuiz.API\obj\Debug\net9.0\KidsQuiz.API.pdb
 C:\Users\Fei Li\KidsQuiz\KidsQuiz_backend\KidsQuiz.API\obj\Debug\net9.0\KidsQuiz.API.genruntimeconfig.cache
 C:\Users\Fei Li\KidsQuiz\KidsQuiz_backend\KidsQuiz.API\obj\Debug\net9.0\ref\KidsQuiz.API.dll
+C:\Users\Fei Li\KidsQuiz\KidsQuiz_backend\KidsQuiz.API\obj\Debug\net9.0\staticwebassets.upToDateCheck.txt

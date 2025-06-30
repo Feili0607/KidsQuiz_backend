@@ -18,6 +18,8 @@ namespace KidsQuiz.Data.Models
         public string LLMPrompt { get; set; }
         public int EstimatedDurationMinutes { get; set; }
         public List<string> Labels { get; set; } = new List<string>();
+        public int? KidId { get; set; } // Nullable Foreign Key
+        public Kid Kid { get; set; }     // Navigation property
         
         // Navigation properties
         public ICollection<Question> Questions { get; set; } = new List<Question>();

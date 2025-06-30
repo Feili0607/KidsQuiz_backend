@@ -14,7 +14,7 @@ namespace KidsQuiz.Services.Interfaces
         Task DeleteQuizAsync(int id);
         
         // LLM Generation
-        Task<QuizDto> GenerateQuizUsingLLMAsync(string prompt, int difficultyLevel);
+        Task<QuizDto> GenerateQuizUsingLLMAsync(UserInfoDto userInfo, int userId);
         Task<QuizDto> ModifyQuizUsingLLMAsync(int quizId, string modificationPrompt);
         
         // Rating and Labeling
@@ -26,5 +26,6 @@ namespace KidsQuiz.Services.Interfaces
         Task<IEnumerable<QuizDto>> GetQuizzesByLabelsAsync(List<string> labels);
         Task<IEnumerable<QuizDto>> GetQuizzesByDifficultyAsync(int difficultyLevel);
         Task<IEnumerable<QuizDto>> GetQuizzesByAgeGroupAndDifficultyAsync(AgeGroup ageGroup, int difficultyLevel);
+        Task<IEnumerable<QuizDto>> GetQuizzesByKidIdAsync(int kidId);
     }
 } 

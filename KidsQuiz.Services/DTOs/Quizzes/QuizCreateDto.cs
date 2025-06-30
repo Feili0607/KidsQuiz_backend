@@ -29,4 +29,13 @@ namespace KidsQuiz.Services.DTOs.Quizzes
         public string ImageUrl { get; set; }
         public string AudioUrl { get; set; }
     }
+
+    public class UserInfoDto
+    {
+        public string Name { get; set; }
+        public string Email { get; set; }
+        public string Grade { get; set; }
+        public string DateOfBirth { get; set; }
+        public string Intro { get; set; }
+    }
 } 

@@ -24,7 +24,7 @@ namespace KidsQuiz.Services.Services
         {
             var question = await _context.QuestionBanks.FindAsync(id);
             if (question == null)
-                throw new NotFoundException($"Question with ID {id} not found.");
+                throw new NotFoundException($"Question with ID {id} not found.", id);
             return question;
         }
 
@@ -69,7 +69,7 @@ namespace KidsQuiz.Services.Services
         {
             var existingQuestion = await _context.QuestionBanks.FindAsync(id);
             if (existingQuestion == null)
-                throw new NotFoundException($"Question with ID {id} not found.");
+                throw new NotFoundException($"Question with ID {id} not found.", id);
 
             existingQuestion.Text = question.Text;
             existingQuestion.Options = question.Options;
@@ -93,7 +93,7 @@ namespace KidsQuiz.Services.Services
         {
             var question = await _context.QuestionBanks.FindAsync(id);
             if (question == null)
-                throw new NotFoundException($"Question with ID {id} not found.");
+                throw new NotFoundException($"Question with ID {id} not found.", id);
 
             _context.QuestionBanks.Remove(question);
             await _context.SaveChangesAsync();
@@ -116,7 +116,7 @@ namespace KidsQuiz.Services.Services
                 limit: questionCount * 2); // Get more questions than needed to ensure variety
 
             if (!questions.Any())
-                throw new NotFoundException("No suitable questions found for the specified criteria.");
+                throw new NotFoundException("Question", "No suitable questions found for the specified criteria.");
 
             // Randomly select questions
             var random = new Random();
@@ -174,7 +174,7 @@ namespace KidsQuiz.Services.Services
         {
             var question = await _context.QuestionBanks.FindAsync(questionId);
             if (question == null)
-                throw new NotFoundException($"Question with ID {questionId} not found.");
+                throw new NotFoundException($"Question with ID {questionId} not found.", questionId);
 
             // Update success rate
             var totalAttempts = question.UsageCount;
