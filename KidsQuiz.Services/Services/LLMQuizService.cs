@@ -1,13 +1,10 @@
-using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
 using System.Text.Json;
-using System.Threading.Tasks;
 using KidsQuiz.Data.Models;
 using KidsQuiz.Services.Interfaces;
-using System;
-using System.Collections.Generic;
 using KidsQuiz.Services.DTOs.Quizzes;
+using Microsoft.Extensions.Logging;
 
 namespace KidsQuiz.Services.Services
 {
@@ -16,12 +13,14 @@ namespace KidsQuiz.Services.Services
         private readonly HttpClient _httpClient;
         private readonly string _openAiApiKey;
         private readonly string _openAiModel;
+        private readonly ILogger<LLMQuizService> _logger;
 
-        public LLMQuizService(HttpClient httpClient)
+        public LLMQuizService(HttpClient httpClient, ILogger<LLMQuizService> logger)
         {
             _httpClient = httpClient;
             _openAiApiKey = Environment.GetEnvironmentVariable("OPENAI_API_KEY");
             _openAiModel = "gpt-3.5-turbo"; // Or "gpt-4" if you have access
+            _logger = logger;
         }
 
         public async Task<Quiz> GenerateFullQuizAsync(UserInfoDto userInfo)
@@ -55,9 +54,9 @@ Return JSON: {{""title"":""string"",""description"":""string"",""questions"":[{{
             };
 
             // Debug logging
-            Console.WriteLine($"Generating quiz for subject: {subject}");
-            Console.WriteLine($"User info: {userInfo.Name}, Grade: {userInfo.Grade}, Interests: {userInfo.Intro}");
-            Console.WriteLine($"Prompt length: {prompt.Length} characters");
+            _logger.LogInformation("Generating quiz for subject: {Subject}", subject);
+            _logger.LogInformation("User info: {Name}, Grade: {Grade}, Interests: {Interests}", userInfo.Name, userInfo.Grade, userInfo.Intro);
+            _logger.LogInformation("Prompt length: {PromptLength} characters", prompt.Length);
 
             var request = new HttpRequestMessage(HttpMethod.Post, "https://api.openai.com/v1/chat/completions")
             {
@@ -70,14 +69,14 @@ Return JSON: {{""title"":""string"",""description"":""string"",""questions"":[{{
             if (!response.IsSuccessStatusCode)
             {
                 var errorContent = await response.Content.ReadAsStringAsync();
-                Console.WriteLine($"OpenAI API Error: {response.StatusCode} - {errorContent}");
+                _logger.LogError("OpenAI API Error: {StatusCode} - {ErrorContent}", response.StatusCode, errorContent);
                 throw new Exception($"OpenAI API call failed with status code {response.StatusCode}: {errorContent}");
             }
             
             var responseString = await response.Content.ReadAsStringAsync();
             
             // Debug logging
-            Console.WriteLine($"OpenAI Response received successfully");
+            _logger.LogInformation("OpenAI Response received successfully");
 
             using var doc = JsonDocument.Parse(responseString);
             var content = doc.RootElement
@@ -89,8 +88,8 @@ Return JSON: {{""title"":""string"",""description"":""string"",""questions"":[{{
             var quizData = JsonSerializer.Deserialize<QuizGenerationDto>(content, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
             
             // Debug logging
-            Console.WriteLine($"Generated quiz title: {quizData.Title}");
-            Console.WriteLine($"Number of questions: {quizData.Questions?.Count ?? 0}");
+            _logger.LogInformation("Generated quiz title: {Title}", quizData.Title);
+            _logger.LogInformation("Number of questions: {QuestionCount}", quizData.Questions?.Count ?? 0);
 
             var quiz = new Quiz
             {

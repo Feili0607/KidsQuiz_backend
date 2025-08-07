@@ -19,6 +19,7 @@ namespace KidsQuiz.API.Extensions
             services.AddScoped<IKidService, KidService>();
             services.AddScoped<IQuizService, QuizService>();
             services.AddScoped<IQuizSolvingRecordService, QuizSolvingRecordService>();
+            services.AddScoped<IQuestionBankService, QuestionBankService>();
 
             return services;
         }
