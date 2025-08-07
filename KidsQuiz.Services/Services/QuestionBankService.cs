@@ -8,23 +8,32 @@ using KidsQuiz.Data.Models;
 using KidsQuiz.Data.ValueObjects;
 using KidsQuiz.Services.Interfaces;
 using KidsQuiz.Services.Exceptions;
+using Microsoft.Extensions.Logging;
 
 namespace KidsQuiz.Services.Services
 {
     public class QuestionBankService : IQuestionBankService
     {
         private readonly ApplicationDbContext _context;
+        private readonly ILogger<QuestionBankService> _logger;
 
-        public QuestionBankService(ApplicationDbContext context)
+        public QuestionBankService(ApplicationDbContext context, ILogger<QuestionBankService> logger)
         {
             _context = context;
+            _logger = logger;
         }
 
         public async Task<QuestionBank> GetQuestionAsync(int id)
         {
+            _logger.LogInformation("Getting question from bank with ID: {QuestionId}", id);
             var question = await _context.QuestionBanks.FindAsync(id);
             if (question == null)
+            {
+                _logger.LogWarning("Question with ID {QuestionId} not found in bank", id);
                 throw new NotFoundException($"Question with ID {id} not found.", id);
+            }
+            
+            _logger.LogInformation("Successfully retrieved question with ID: {QuestionId}", id);
             return question;
         }
 
@@ -34,6 +43,9 @@ namespace KidsQuiz.Services.Services
             InterestCategory? category = null,
             int? limit = null)
         {
+            _logger.LogInformation("Getting questions by filters: AgeGroup={AgeGroup}, DifficultyLevel={DifficultyLevel}, Category={Category}, Limit={Limit}", 
+                ageGroup, difficultyLevel, category, limit);
+            
             var query = _context.QuestionBanks.AsQueryable();
 
             if (ageGroup.HasValue)
@@ -50,11 +62,14 @@ namespace KidsQuiz.Services.Services
             if (limit.HasValue)
                 query = query.Take(limit.Value);
 
-            return await query.ToListAsync();
+            var questions = await query.ToListAsync();
+            _logger.LogInformation("Retrieved {Count} questions matching filters", questions.Count);
+            return questions;
         }
 
         public async Task<QuestionBank> CreateQuestionAsync(QuestionBank question)
         {
+            _logger.LogInformation("Creating new question in bank");
             question.CreatedAt = DateTime.UtcNow;
             question.IsActive = true;
             question.UsageCount = 0;
@@ -62,14 +77,20 @@ namespace KidsQuiz.Services.Services
 
             _context.QuestionBanks.Add(question);
             await _context.SaveChangesAsync();
+            
+            _logger.LogInformation("Successfully created question with ID: {QuestionId}", question.Id);
             return question;
         }
 
         public async Task<QuestionBank> UpdateQuestionAsync(int id, QuestionBank question)
         {
+            _logger.LogInformation("Updating question in bank with ID: {QuestionId}", id);
             var existingQuestion = await _context.QuestionBanks.FindAsync(id);
             if (existingQuestion == null)
+            {
+                _logger.LogWarning("Question with ID {QuestionId} not found for update", id);
                 throw new NotFoundException($"Question with ID {id} not found.", id);
+            }
 
             existingQuestion.Text = question.Text;
             existingQuestion.Options = question.Options;
@@ -86,17 +107,23 @@ namespace KidsQuiz.Services.Services
             existingQuestion.IsActive = question.IsActive;
 
             await _context.SaveChangesAsync();
+            _logger.LogInformation("Successfully updated question with ID: {QuestionId}", id);
             return existingQuestion;
         }
 
         public async Task DeleteQuestionAsync(int id)
         {
+            _logger.LogInformation("Deleting question from bank with ID: {QuestionId}", id);
             var question = await _context.QuestionBanks.FindAsync(id);
             if (question == null)
+            {
+                _logger.LogWarning("Question with ID {QuestionId} not found for deletion", id);
                 throw new NotFoundException($"Question with ID {id} not found.", id);
+            }
 
             _context.QuestionBanks.Remove(question);
             await _context.SaveChangesAsync();
+            _logger.LogInformation("Successfully deleted question with ID: {QuestionId}", id);
         }
 
         public async Task<Quiz> GenerateQuizAsync(
@@ -108,6 +135,9 @@ namespace KidsQuiz.Services.Services
             int questionCount,
             int estimatedDurationMinutes)
         {
+            _logger.LogInformation("Generating quiz from question bank: Title={Title}, AgeGroup={AgeGroup}, Category={Category}, DifficultyLevel={DifficultyLevel}, QuestionCount={QuestionCount}", 
+                title, targetAgeGroup, category, difficultyLevel, questionCount);
+            
             // Get questions from the question bank
             var questions = await GetQuestionsByFiltersAsync(
                 ageGroup: targetAgeGroup,
@@ -116,7 +146,11 @@ namespace KidsQuiz.Services.Services
                 limit: questionCount * 2); // Get more questions than needed to ensure variety
 
             if (!questions.Any())
+            {
+                _logger.LogWarning("No suitable questions found for quiz generation with criteria: AgeGroup={AgeGroup}, Category={Category}, DifficultyLevel={DifficultyLevel}", 
+                    targetAgeGroup, category, difficultyLevel);
                 throw new NotFoundException("Question", "No suitable questions found for the specified criteria.");
+            }
 
             // Randomly select questions
             var random = new Random();
@@ -124,6 +158,8 @@ namespace KidsQuiz.Services.Services
                 .OrderBy(q => random.Next())
                 .Take(questionCount)
                 .ToList();
+
+            _logger.LogInformation("Selected {SelectedCount} questions from {AvailableCount} available questions", selectedQuestions.Count, questions.Count());
 
             // Create the quiz
             var quiz = new Quiz
@@ -167,14 +203,19 @@ namespace KidsQuiz.Services.Services
             }
             await _context.SaveChangesAsync();
 
+            _logger.LogInformation("Successfully generated quiz with ID: {QuizId} from question bank", quiz.Id);
             return quiz;
         }
 
         public async Task UpdateQuestionStatsAsync(int questionId, bool isCorrect)
         {
+            _logger.LogInformation("Updating stats for question {QuestionId}, isCorrect: {IsCorrect}", questionId, isCorrect);
             var question = await _context.QuestionBanks.FindAsync(questionId);
             if (question == null)
+            {
+                _logger.LogWarning("Question with ID {QuestionId} not found for stats update", questionId);
                 throw new NotFoundException($"Question with ID {questionId} not found.", questionId);
+            }
 
             // Update success rate
             var totalAttempts = question.UsageCount;
@@ -183,6 +224,7 @@ namespace KidsQuiz.Services.Services
             question.SuccessRate = (double)newSuccessCount / (totalAttempts + 1);
 
             await _context.SaveChangesAsync();
+            _logger.LogInformation("Successfully updated stats for question {QuestionId}, new success rate: {SuccessRate}", questionId, question.SuccessRate);
         }
     }
 } 
