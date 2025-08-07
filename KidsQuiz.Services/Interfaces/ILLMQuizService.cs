@@ -6,7 +6,6 @@ namespace KidsQuiz.Services.Interfaces
 {
     public interface ILLMQuizService
     {
-        Task<QuestionBank> GenerateQuestionAsync(string subject, string grade, string difficulty);
         Task<Quiz> GenerateFullQuizAsync(UserInfoDto userInfo);
     }
 } 

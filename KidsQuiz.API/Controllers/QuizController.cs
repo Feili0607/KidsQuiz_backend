@@ -5,7 +5,6 @@ using Microsoft.AspNetCore.Mvc;
 using KidsQuiz.Services.Interfaces;
 using KidsQuiz.Services.DTOs.Quizzes;
 using KidsQuiz.Services.Exceptions;
-using KidsQuiz.Services.Helpers;
 
 namespace KidsQuiz.API.Controllers
 {
@@ -41,112 +40,18 @@ namespace KidsQuiz.API.Controllers
             }
         }
 
-        [HttpGet("by-grade/{grade}")]
-        public async Task<ActionResult<IEnumerable<QuizDto>>> GetQuizzesByGrade(string grade)
+        [HttpGet("{id}/detail")]
+        public async Task<ActionResult<QuizDetailDto>> GetQuizDetail(int id)
         {
             try
             {
-                var ageGroup = GradeToAgeGroupMapper.MapGradeToAgeGroup(grade);
-                var difficultyLevel = (int)GradeToAgeGroupMapper.GetRecommendedDifficultyLevel(grade);
-                
-                var quizzes = await _quizService.GetQuizzesByAgeGroupAndDifficultyAsync(ageGroup, difficultyLevel);
-                return Ok(quizzes);
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
-        }
-
-        [HttpPost]
-        public async Task<ActionResult<QuizDto>> CreateQuiz(QuizCreateDto quizCreateDto)
-        {
-            var quiz = await _quizService.CreateQuizAsync(quizCreateDto);
-            return CreatedAtAction(nameof(GetQuiz), new { id = quiz.Id }, quiz);
-        }
-
-        [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateQuiz(int id, QuizUpdateDto quizUpdateDto)
-        {
-            try
-            {
-                await _quizService.UpdateQuizAsync(id, quizUpdateDto);
-                return NoContent();
+                var quiz = await _quizService.GetQuizDetailAsync(id);
+                return Ok(quiz);
             }
             catch (QuizNotFoundException)
             {
                 return NotFound();
             }
-        }
-
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteQuiz(int id)
-        {
-            try
-            {
-                await _quizService.DeleteQuizAsync(id);
-                return NoContent();
-            }
-            catch (QuizNotFoundException)
-            {
-                return NotFound();
-            }
-        }
-
-        [HttpPut("{id}/rating")]
-        public async Task<IActionResult> UpdateQuizRating(int id, [FromBody] double rating)
-        {
-            try
-            {
-                await _quizService.UpdateQuizRatingAsync(id, rating);
-                return NoContent();
-            }
-            catch (QuizNotFoundException)
-            {
-                return NotFound();
-            }
-        }
-
-        [HttpPost("{id}/labels")]
-        public async Task<IActionResult> AddLabel(int id, [FromBody] string label)
-        {
-            try
-            {
-                await _quizService.AddLabelToQuizAsync(id, label);
-                return NoContent();
-            }
-            catch (QuizNotFoundException)
-            {
-                return NotFound();
-            }
-        }
-
-        [HttpDelete("{id}/labels/{label}")]
-        public async Task<IActionResult> RemoveLabel(int id, string label)
-        {
-            try
-            {
-                await _quizService.RemoveLabelFromQuizAsync(id, label);
-                return NoContent();
-            }
-            catch (QuizNotFoundException)
-            {
-                return NotFound();
-            }
-        }
-
-        [HttpGet("by-labels")]
-        public async Task<ActionResult<IEnumerable<QuizDto>>> GetQuizzesByLabels([FromQuery] List<string> labels)
-        {
-            var quizzes = await _quizService.GetQuizzesByLabelsAsync(labels);
-            return Ok(quizzes);
-        }
-
-        [HttpGet("by-difficulty/{difficultyLevel}")]
-        public async Task<ActionResult<IEnumerable<QuizDto>>> GetQuizzesByDifficulty(int difficultyLevel)
-        {
-            var quizzes = await _quizService.GetQuizzesByDifficultyAsync(difficultyLevel);
-            return Ok(quizzes);
         }
 
         [HttpGet("user/{userId}")]
@@ -157,15 +62,37 @@ namespace KidsQuiz.API.Controllers
         }
 
         [HttpPost("generate-openai")]
-        public async Task<ActionResult<QuizDto>> GenerateOpenAIQuiz([FromBody] GenerateOpenAIQuizRequest request)
+        public async Task<ActionResult<QuizDetailDto>> GenerateOpenAIQuiz([FromBody] GenerateOpenAIQuizRequest request)
         {
             try
             {
+                Console.WriteLine($"Received quiz generation request for user {request.UserId}");
+                Console.WriteLine($"User info: Name={request.UserInfo?.Name}, Grade={request.UserInfo?.Grade}, Subject={request.UserInfo?.Subject}");
+                
+                if (request.UserInfo == null)
+                {
+                    Console.WriteLine("UserInfo is null!");
+                    return BadRequest("UserInfo is required");
+                }
+                
+                if (string.IsNullOrEmpty(request.UserInfo.Grade))
+                {
+                    Console.WriteLine("Grade is missing!");
+                    return BadRequest("Grade is required");
+                }
+
                 var quiz = await _quizService.GenerateQuizUsingLLMAsync(request.UserInfo, request.UserId);
+                Console.WriteLine($"Successfully generated quiz with ID: {quiz.Id}");
                 return Ok(quiz);
             }
             catch (Exception ex)
             {
+                Console.WriteLine($"Error in GenerateOpenAIQuiz: {ex.Message}");
+                Console.WriteLine($"Stack trace: {ex.StackTrace}");
+                if (ex.InnerException != null)
+                {
+                    Console.WriteLine($"Inner exception: {ex.InnerException.Message}");
+                }
                 return BadRequest($"Failed to generate quiz: {ex.Message}");
             }
         }

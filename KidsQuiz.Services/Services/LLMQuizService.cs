@@ -26,44 +26,38 @@ namespace KidsQuiz.Services.Services
 
         public async Task<Quiz> GenerateFullQuizAsync(UserInfoDto userInfo)
         {
-            var prompt = @$"Generate a fun and educational quiz for a child named {userInfo.Name} who is in {userInfo.Grade}.
-The child's interests are: '{userInfo.Intro}'.
+            var subject = string.IsNullOrEmpty(userInfo.Subject) ? "General Knowledge" : userInfo.Subject;
+            
+            var prompt = @$"Generate a fun quiz for {userInfo.Name} (Grade {userInfo.Grade}) about {subject}.
+Interests: {userInfo.Intro}
 
-Create a quiz with:
-- A fun, engaging title.
-- A short, encouraging description.
-- 5 multiple-choice questions appropriate for {userInfo.Grade}.
-- Questions should be related to the child's interests: {userInfo.Intro}.
-- Each question must have 4 options.
-- Indicate the correct answer index (0-3).
-- Provide a brief, simple explanation for the correct answer.
+Create:
+- Title mentioning {subject}
+- Description about learning {subject}
+- AT LEAST 10 multiple-choice questions about {subject}
+- 4 options per question
+- Correct answer index (0-3)
+- Brief explanation
 
-Return the result as a single JSON object with the following structure:
-{{
-  ""title"": ""string"",
-  ""description"": ""string"",
-  ""questions"": [
-    {{
-      ""text"": ""string"",
-      ""options"": [""string"", ""string"", ""string"", ""string""],
-      ""correctAnswerIndex"": 0,
-      ""explanation"": ""string""
-    }}
-  ]
-}}";
+Return JSON: {{""title"":""string"",""description"":""string"",""questions"":[{{""text"":""string"",""options"":[""string"",""string"",""string"",""string""],""correctAnswerIndex"":0,""explanation"":""string""}}]}}";
 
             var requestBody = new
             {
                 model = _openAiModel,
                 messages = new[]
                 {
-                    new { role = "system", content = "You are a helpful quiz generator for children." },
+                    new { role = "system", content = "You are a helpful quiz generator for children. Create questions specifically about the requested subject." },
                     new { role = "user", content = prompt }
                 },
-                response_format = new { type = "json_object" }, // Enforce JSON output
+                response_format = new { type = "json_object" },
                 max_tokens = 2000,
-                temperature = 0.8
+                temperature = 0.9
             };
+
+            // Debug logging
+            Console.WriteLine($"Generating quiz for subject: {subject}");
+            Console.WriteLine($"User info: {userInfo.Name}, Grade: {userInfo.Grade}, Interests: {userInfo.Intro}");
+            Console.WriteLine($"Prompt length: {prompt.Length} characters");
 
             var request = new HttpRequestMessage(HttpMethod.Post, "https://api.openai.com/v1/chat/completions")
             {
@@ -76,11 +70,14 @@ Return the result as a single JSON object with the following structure:
             if (!response.IsSuccessStatusCode)
             {
                 var errorContent = await response.Content.ReadAsStringAsync();
-                // Consider logging the error content for debugging
+                Console.WriteLine($"OpenAI API Error: {response.StatusCode} - {errorContent}");
                 throw new Exception($"OpenAI API call failed with status code {response.StatusCode}: {errorContent}");
             }
             
             var responseString = await response.Content.ReadAsStringAsync();
+            
+            // Debug logging
+            Console.WriteLine($"OpenAI Response received successfully");
 
             using var doc = JsonDocument.Parse(responseString);
             var content = doc.RootElement
@@ -90,99 +87,39 @@ Return the result as a single JSON object with the following structure:
 
             // The content is a JSON string, so we deserialize it into our Quiz and Question models
             var quizData = JsonSerializer.Deserialize<QuizGenerationDto>(content, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
+            
+            // Debug logging
+            Console.WriteLine($"Generated quiz title: {quizData.Title}");
+            Console.WriteLine($"Number of questions: {quizData.Questions?.Count ?? 0}");
 
             var quiz = new Quiz
             {
-                Title = quizData.Title,
-                Description = quizData.Description,
-                Content = $"Quiz generated for {userInfo.Name} based on their interests.",
+                Title = quizData.Title ?? "Generated Quiz",
+                Description = quizData.Description ?? "A fun quiz generated for you!",
+                Content = $"Quiz generated for {userInfo.Name} based on their interests in {subject}.",
                 DifficultyLevel = (int)GetDifficultyFromGrade(userInfo.Grade),
                 IsGeneratedByLLM = true,
-                LLMPrompt = prompt,
+                LLMPrompt = $"Quiz for {userInfo.Name} about {subject}", // Store only a short version
                 EstimatedDurationMinutes = 10,
                 CreatedAt = DateTime.UtcNow,
-                Questions = quizData.Questions.Select(q => new Question
+                Rating = 0,
+                RatingCount = 0,
+                Labels = new List<string> { subject.ToLower() },
+                Questions = quizData.Questions?.Select(q => new Question
                 {
-                    Text = q.Text,
-                    Options = q.Options,
+                    Text = q.Text ?? "Question",
+                    Options = q.Options ?? new List<string> { "Option A", "Option B", "Option C", "Option D" },
                     CorrectAnswerIndex = q.CorrectAnswerIndex,
-                    Explanation = q.Explanation,
-                    DifficultyLevel = (Data.ValueObjects.DifficultyLevel)GetDifficultyFromGrade(userInfo.Grade), // Inherit difficulty
-                    Points = 10, // Default points
-                    CreatedAt = DateTime.UtcNow
-                }).ToList()
+                    Explanation = q.Explanation ?? "This is the correct answer.",
+                    DifficultyLevel = (Data.ValueObjects.DifficultyLevel)GetDifficultyFromGrade(userInfo.Grade),
+                    Points = 10,
+                    CreatedAt = DateTime.UtcNow,
+                    AudioUrl = "",
+                    ImageUrl = ""
+                }).ToList() ?? new List<Question>()
             };
 
             return quiz;
-        }
-
-        // This method is no longer the primary one for your goal, but we leave it for now.
-        public async Task<QuestionBank> GenerateQuestionAsync(string subject, string grade, string difficulty)
-        {
-            var prompt = @$"Generate a multiple-choice {subject} question for a student in grade {grade} at {difficulty} difficulty.
-Return the result as a JSON object with the following fields:
-- question: string
-- options: array of 4 strings
-- correct_answer_index: integer (0-based)
-- explanation: string
-Example:
-{{
-  ""question"": ""What is 2 + 2?"",
-  ""options"": [""3"", ""4"", ""5"", ""6""],
-  ""correct_answer_index"": 1,
-  ""explanation"": ""2 + 2 = 4""
-}}";
-
-            var requestBody = new
-            {
-                model = _openAiModel,
-                messages = new[]
-                {
-                    new { role = "system", content = "You are a helpful quiz generator for children." },
-                    new { role = "user", content = prompt }
-                },
-                max_tokens = 400,
-                temperature = 0.7
-            };
-
-            var request = new HttpRequestMessage(HttpMethod.Post, "https://api.openai.com/v1/chat/completions")
-            {
-                Content = new StringContent(JsonSerializer.Serialize(requestBody), Encoding.UTF8, "application/json")
-            };
-            request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", _openAiApiKey);
-
-            var response = await _httpClient.SendAsync(request);
-            response.EnsureSuccessStatusCode();
-            var responseString = await response.Content.ReadAsStringAsync();
-
-            using var doc = JsonDocument.Parse(responseString);
-            var content = doc.RootElement
-                .GetProperty("choices")[0]
-                .GetProperty("message")
-                .GetProperty("content").GetString();
-
-            // Parse the JSON from the LLM's response
-            var questionJson = JsonDocument.Parse(content);
-            var root = questionJson.RootElement;
-
-            var question = new QuestionBank
-            {
-                Text = root.GetProperty("question").GetString(),
-                Options = new List<string>(),
-                CorrectAnswerIndex = root.GetProperty("correct_answer_index").GetInt32(),
-                Explanation = root.GetProperty("explanation").GetString(),
-                CreatedAt = DateTime.UtcNow,
-                IsActive = true,
-                UsageCount = 0,
-                SuccessRate = 0,
-                ImageUrl = "",
-                AudioUrl = ""
-            };
-            foreach (var opt in root.GetProperty("options").EnumerateArray())
-            {
-                question.Options.Add(opt.GetString());
-            }
-            return question;
         }
 
         private static Data.ValueObjects.DifficultyLevel GetDifficultyFromGrade(string grade)

@@ -8,7 +8,6 @@ using KidsQuiz.Services.DTOs.Quizzes;
 using KidsQuiz.Services.Exceptions;
 using KidsQuiz.Data;
 using Microsoft.EntityFrameworkCore;
-using KidsQuiz.Data.ValueObjects;
 
 namespace KidsQuiz.Services.Services
 {
@@ -32,146 +31,21 @@ namespace KidsQuiz.Services.Services
             return MapToDto(quiz);
         }
 
+        public async Task<QuizDetailDto> GetQuizDetailAsync(int id)
+        {
+            var quiz = await _context.Quizzes
+                .Include(q => q.Questions)
+                .FirstOrDefaultAsync(q => q.Id == id);
+            
+            if (quiz == null)
+                throw new QuizNotFoundException(id);
+
+            return MapToDetailDto(quiz);
+        }
+
         public async Task<IEnumerable<QuizDto>> GetAllQuizzesAsync()
         {
             var quizzes = await _context.Quizzes.ToListAsync();
-            return quizzes.Select(MapToDto);
-        }
-
-        public async Task<QuizDto> CreateQuizAsync(QuizCreateDto quizCreateDto)
-        {
-            var quiz = new Quiz
-            {
-                Title = quizCreateDto.Title,
-                Description = quizCreateDto.Description,
-                Content = quizCreateDto.Content,
-                DifficultyLevel = quizCreateDto.DifficultyLevel,
-                Labels = quizCreateDto.Labels,
-                CreatedAt = DateTime.UtcNow,
-                EstimatedDurationMinutes = quizCreateDto.EstimatedDurationMinutes,
-                IsGeneratedByLLM = quizCreateDto.IsGeneratedByLLM,
-                LLMPrompt = quizCreateDto.LLMPrompt
-            };
-
-            _context.Quizzes.Add(quiz);
-            await _context.SaveChangesAsync();
-
-            return MapToDto(quiz);
-        }
-
-        public async Task UpdateQuizAsync(int id, QuizUpdateDto quizUpdateDto)
-        {
-            var quiz = await _context.Quizzes.FindAsync(id);
-            if (quiz == null)
-                throw new QuizNotFoundException(id);
-
-            quiz.Title = quizUpdateDto.Title ?? quiz.Title;
-            quiz.Description = quizUpdateDto.Description ?? quiz.Description;
-            quiz.Content = quizUpdateDto.Content ?? quiz.Content;
-            quiz.DifficultyLevel = quizUpdateDto.DifficultyLevel ?? quiz.DifficultyLevel;
-
-            if (quizUpdateDto.Labels != null)
-            {
-                quiz.Labels = quizUpdateDto.Labels;
-            }
-
-            quiz.ModifiedAt = DateTime.UtcNow;
-            await _context.SaveChangesAsync();
-        }
-
-        public async Task DeleteQuizAsync(int id)
-        {
-            var quiz = await _context.Quizzes.FindAsync(id);
-            if (quiz == null)
-                throw new QuizNotFoundException(id);
-
-            _context.Quizzes.Remove(quiz);
-            await _context.SaveChangesAsync();
-        }
-
-        public async Task<QuizDto> GenerateQuizUsingLLMAsync(UserInfoDto userInfo, int userId)
-        {
-            // Call the LLM service to generate the full quiz content
-            var quiz = await _llmQuizService.GenerateFullQuizAsync(userInfo);
-
-            // Associate the quiz with the user
-            quiz.KidId = userId;
-
-            // Save the newly generated quiz to the database
-            _context.Quizzes.Add(quiz);
-            await _context.SaveChangesAsync();
-
-            // Map to DTO and return
-            return MapToDto(quiz);
-        }
-
-        public async Task<QuizDto> ModifyQuizUsingLLMAsync(int quizId, string modificationPrompt)
-        {
-            // TODO: Implement LLM integration
-            throw new NotImplementedException();
-        }
-
-        public async Task UpdateQuizRatingAsync(int quizId, double rating)
-        {
-            var quiz = await _context.Quizzes.FindAsync(quizId);
-            if (quiz == null)
-                throw new QuizNotFoundException(quizId);
-
-            quiz.Rating = (quiz.Rating * quiz.RatingCount + rating) / (quiz.RatingCount + 1);
-            quiz.RatingCount++;
-            await _context.SaveChangesAsync();
-        }
-
-        public async Task AddLabelToQuizAsync(int quizId, string label)
-        {
-            var quiz = await _context.Quizzes.FindAsync(quizId);
-            if (quiz == null)
-                throw new QuizNotFoundException(quizId);
-
-            if (!quiz.Labels.Contains(label))
-            {
-                quiz.Labels.Add(label);
-                await _context.SaveChangesAsync();
-            }
-        }
-
-        public async Task RemoveLabelFromQuizAsync(int quizId, string label)
-        {
-            var quiz = await _context.Quizzes.FindAsync(quizId);
-            if (quiz == null)
-                throw new QuizNotFoundException(quizId);
-
-            quiz.Labels.Remove(label);
-            await _context.SaveChangesAsync();
-        }
-
-        public async Task<IEnumerable<QuizDto>> GetQuizzesByLabelsAsync(List<string> labels)
-        {
-            var quizzes = await _context.Quizzes
-                .Where(q => labels.All(l => q.Labels.Contains(l)))
-                .ToListAsync();
-
-            return quizzes.Select(MapToDto);
-        }
-
-        public async Task<IEnumerable<QuizDto>> GetQuizzesByDifficultyAsync(int difficultyLevel)
-        {
-            var quizzes = await _context.Quizzes
-                .Where(q => q.DifficultyLevel == difficultyLevel)
-                .ToListAsync();
-
-            return quizzes.Select(MapToDto);
-        }
-
-        public async Task<IEnumerable<QuizDto>> GetQuizzesByAgeGroupAndDifficultyAsync(AgeGroup ageGroup, int difficultyLevel)
-        {
-            var ageGroupLabel = ageGroup.ToString().ToLower();
-            var quizzes = await _context.Quizzes
-                .Where(q => q.DifficultyLevel == difficultyLevel && 
-                           q.Labels.Contains(ageGroupLabel))
-                .OrderByDescending(q => q.Rating)
-                .ToListAsync();
-
             return quizzes.Select(MapToDto);
         }
 
@@ -180,15 +54,51 @@ namespace KidsQuiz.Services.Services
             var quizzes = await _context.Quizzes
                 .Where(q => q.KidId == kidId)
                 .ToListAsync();
-
             return quizzes.Select(MapToDto);
+        }
+
+        public async Task<QuizDetailDto> GenerateQuizUsingLLMAsync(UserInfoDto userInfo, int userId)
+        {
+            try
+            {
+                // Call the LLM service to generate the full quiz content
+                var quiz = await _llmQuizService.GenerateFullQuizAsync(userInfo);
+
+                // Associate the quiz with the user
+                quiz.KidId = userId;
+
+                // Ensure all required fields are set
+                if (quiz.Questions != null)
+                {
+                    foreach (var question in quiz.Questions)
+                    {
+                        question.AudioUrl = question.AudioUrl ?? "";
+                        question.ImageUrl = question.ImageUrl ?? "";
+                        question.Explanation = question.Explanation ?? "";
+                        question.Text = question.Text ?? "";
+                        if (question.Options == null)
+                            question.Options = new List<string>();
+                    }
+                }
+
+                // Save the newly generated quiz to the database
+                _context.Quizzes.Add(quiz);
+                await _context.SaveChangesAsync();
+
+                // Map to QuizDetailDto and return
+                return MapToDetailDto(quiz);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error in GenerateQuizUsingLLMAsync: {ex.Message}");
+                Console.WriteLine($"Inner exception: {ex.InnerException?.Message}");
+                throw;
+            }
         }
 
         private QuizDto MapToDto(Quiz quiz)
         {
-            if (quiz == null)
-                return null;
-
+            if (quiz == null) return null;
             return new QuizDto
             {
                 Id = quiz.Id,
@@ -200,6 +110,41 @@ namespace KidsQuiz.Services.Services
                 CreatedAt = quiz.CreatedAt,
                 ModifiedAt = quiz.ModifiedAt,
                 Labels = quiz.Labels
+            };
+        }
+
+        private QuizDetailDto MapToDetailDto(Quiz quiz)
+        {
+            if (quiz == null) return null;
+            return new QuizDetailDto
+            {
+                Id = quiz.Id,
+                Title = quiz.Title,
+                Description = quiz.Description,
+                Questions = quiz.Questions?.Select(q => new QuestionDto
+                {
+                    Id = q.Id,
+                    Text = q.Text,
+                    Options = q.Options,
+                    CorrectAnswerIndex = q.CorrectAnswerIndex,
+                    Explanation = q.Explanation,
+                    DifficultyLevel = q.DifficultyLevel,
+                    Points = q.Points,
+                    ImageUrl = q.ImageUrl,
+                    AudioUrl = q.AudioUrl
+                }).ToList(),
+                Labels = quiz.Labels,
+                TargetAgeGroup = 0, // Set if available
+                DifficultyLevel = (KidsQuiz.Data.ValueObjects.DifficultyLevel)quiz.DifficultyLevel,
+                Category = 0, // Set if available
+                Rating = quiz.Rating,
+                RatingCount = quiz.RatingCount,
+                CreatedAt = quiz.CreatedAt,
+                ModifiedAt = quiz.ModifiedAt,
+                IsGeneratedByLLM = quiz.IsGeneratedByLLM,
+                LLMPrompt = quiz.LLMPrompt,
+                EstimatedDurationMinutes = quiz.EstimatedDurationMinutes,
+                IsActive = true // or set as needed
             };
         }
     }

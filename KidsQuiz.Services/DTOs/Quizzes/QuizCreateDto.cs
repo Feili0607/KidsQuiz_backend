@@ -37,5 +37,6 @@ namespace KidsQuiz.Services.DTOs.Quizzes
         public string Grade { get; set; }
         public string DateOfBirth { get; set; }
         public string Intro { get; set; }
+        public string Subject { get; set; }
     }
 } 
