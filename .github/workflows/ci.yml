@@ -1,0 +1,80 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main, develop ]
+
+env:
+  DOTNET_VERSION: '9.0.x'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: ${{ env.DOTNET_VERSION }}
+        
+    - name: Restore dependencies
+      run: dotnet restore KidsQuiz.sln
+      
+    - name: Build
+      run: dotnet build KidsQuiz.sln --no-restore --configuration Release
+      
+    - name: Test
+      run: dotnet test KidsQuiz.sln --no-build --verbosity normal --configuration Release
+      
+    - name: Publish
+      run: dotnet publish KidsQuiz.API/KidsQuiz.API.csproj --configuration Release --output ./publish
+      
+    - name: Upload build artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: build-artifacts
+        path: ./publish
+        retention-days: 30
+
+  security-scan:
+    runs-on: ubuntu-latest
+    needs: build
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: ${{ env.DOTNET_VERSION }}
+        
+    - name: Run security scan
+      run: dotnet list package --vulnerable
+      
+    - name: Run dependency check
+      run: dotnet outdated --fail-on-updates
+
+  code-quality:
+    runs-on: ubuntu-latest
+    needs: build
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: ${{ env.DOTNET_VERSION }}
+        
+    - name: Run code analysis
+      run: dotnet build KidsQuiz.sln --configuration Release --verbosity normal
+      
+    - name: Check for code style issues
+      run: dotnet format --verify-no-changes KidsQuiz.sln 
