@@ -6,6 +6,7 @@ using KidsQuiz.Services.Interfaces;
 using KidsQuiz.Services.DTOs.Records;
 using KidsQuiz.Services.Exceptions;
 using Microsoft.Extensions.Logging;
+using System.Text.Json;
 
 namespace KidsQuiz.API.Controllers
 {
@@ -14,11 +15,13 @@ namespace KidsQuiz.API.Controllers
     public class QuizSolvingRecordsController : ControllerBase
     {
         private readonly IQuizSolvingRecordService _recordService;
+        private readonly IQuizService _quizService; // Added _quizService
         private readonly ILogger<QuizSolvingRecordsController> _logger;
 
-        public QuizSolvingRecordsController(IQuizSolvingRecordService recordService, ILogger<QuizSolvingRecordsController> logger)
+        public QuizSolvingRecordsController(IQuizSolvingRecordService recordService, IQuizService quizService, ILogger<QuizSolvingRecordsController> logger) // Modified constructor
         {
             _recordService = recordService;
+            _quizService = quizService; // Initialize _quizService
             _logger = logger;
         }
 
@@ -136,6 +139,50 @@ namespace KidsQuiz.API.Controllers
             }
         }
 
+        [HttpGet("results/{recordId}")]
+        public async Task<ActionResult<QuizResultDto>> GetQuizResults(int recordId)
+        {
+            try
+            {
+                _logger.LogInformation("Getting quiz results for record with ID: {RecordId}", recordId);
+                var record = await _recordService.GetRecordAsync(recordId);
+                
+                // Get the quiz with questions to show correct answers
+                var quiz = await _quizService.GetQuizDetailAsync(record.QuizId);
+                
+                // Parse the user answers
+                var userAnswers = JsonSerializer.Deserialize<List<UserAnswerDto>>(record.Answers ?? "[]", new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
+                
+                var result = new QuizResultDto
+                {
+                    RecordId = record.Id,
+                    Score = record.Score,
+                    TotalQuestions = quiz.Questions.Count,
+                    CorrectAnswers = record.Score,
+                    AccuracyPercentage = quiz.Questions.Count > 0 ? (double)record.Score / quiz.Questions.Count * 100 : 0,
+                    TimeTakenInSeconds = record.TimeTakenInSeconds,
+                    DetailedResults = new Dictionary<string, object>
+                    {
+                        ["Quiz"] = quiz,
+                        ["UserAnswers"] = userAnswers ?? new List<UserAnswerDto>()
+                    }
+                };
+                
+                _logger.LogInformation("Successfully retrieved quiz results for record {RecordId}", recordId);
+                return Ok(result);
+            }
+            catch (QuizRecordNotFoundException)
+            {
+                _logger.LogWarning("Quiz record with ID {RecordId} not found", recordId);
+                return NotFound("Quiz record not found");
+            }
+            catch (QuizNotFoundException)
+            {
+                _logger.LogWarning("Quiz not found for record {RecordId}", recordId);
+                return NotFound("Quiz not found");
+            }
+        }
+
         [HttpGet("kid/{kidId}/stats")]
         public async Task<ActionResult<Dictionary<string, object>>> GetKidQuizStats(int kidId)
         {
@@ -186,5 +233,13 @@ namespace KidsQuiz.API.Controllers
                 return NotFound();
             }
         }
+    }
+
+    // Supporting DTO for answer validation
+    public class UserAnswerDto
+    {
+        public int QuestionId { get; set; }
+        public int SelectedAnswerIndex { get; set; }
+        public TimeSpan TimeTaken { get; set; }
     }
 } 
