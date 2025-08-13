@@ -11,8 +11,12 @@ namespace KidsQuiz.Services.Interfaces
         Task<QuizDetailDto> GetQuizDetailAsync(int id);
         Task<IEnumerable<QuizDto>> GetAllQuizzesAsync();
         Task<IEnumerable<QuizDto>> GetQuizzesByKidIdAsync(int kidId);
+        Task<QuizDto> UpdateQuizAsync(int id, QuizUpdateDto quizUpdateDto);
         
         // OpenAI Quiz Generation
         Task<QuizDetailDto> GenerateQuizUsingLLMAsync(UserInfoDto userInfo, int userId);
+        
+        // Quiz Answer Index Fix
+        Task<bool> FixQuizAnswerIndicesAsync(int quizId);
     }
 } 

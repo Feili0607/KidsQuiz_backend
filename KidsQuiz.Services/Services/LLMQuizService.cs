@@ -27,25 +27,57 @@ namespace KidsQuiz.Services.Services
         {
             var subject = string.IsNullOrEmpty(userInfo.Subject) ? "General Knowledge" : userInfo.Subject;
             
-            var prompt = @$"Generate a fun quiz for {userInfo.Name} (Grade {userInfo.Grade}) about {subject}.
+            // Add randomization to ensure variety
+            var random = new Random();
+            var quizThemes = new[] { "fun facts", "practical knowledge", "historical trivia", "real-world applications", "creative thinking", "problem solving", "amazing discoveries", "everyday science", "cool experiments", "fascinating stories" };
+            var selectedTheme = quizThemes[random.Next(quizThemes.Length)];
+            
+            // Add more variety with time-based elements
+            var currentHour = DateTime.UtcNow.Hour;
+            var timeOfDay = currentHour < 12 ? "morning" : currentHour < 17 ? "afternoon" : "evening";
+            var dayOfWeek = DateTime.UtcNow.DayOfWeek.ToString().ToLower();
+            
+            // Add additional variety elements
+            var quizStyles = new[] { "adventure", "challenge", "exploration", "journey", "quest", "discovery", "mission", "expedition", "investigation", "exploration" };
+            var selectedStyle = quizStyles[random.Next(quizStyles.Length)];
+            
+            var prompt = @$"Generate a unique and diverse quiz for {userInfo.Name} (Grade {userInfo.Grade}) about {subject}.
 Interests: {userInfo.Intro}
+Theme Focus: {selectedTheme}
+Time Context: {timeOfDay} on {dayOfWeek}
+Style: {selectedStyle}
+
+IMPORTANT: Make this quiz completely different from any other {subject} quiz. Use creative titles, varied question types, and diverse content.
+
+CRITICAL: The CorrectAnswerIndex must be the ZERO-BASED index of the correct answer in the options array.
+- If the correct answer is the FIRST option, CorrectAnswerIndex = 0
+- If the correct answer is the SECOND option, CorrectAnswerIndex = 1  
+- If the correct answer is the THIRD option, CorrectAnswerIndex = 2
+- If the correct answer is the FOURTH option, CorrectAnswerIndex = 3
 
 Create:
-- Title mentioning {subject}
-- Description about learning {subject}
-- AT LEAST 10 multiple-choice questions about {subject}
-- 4 options per question
-- Correct answer index (0-3)
-- Brief explanation
+- A UNIQUE title that stands out from other {subject} quizzes (be creative and specific)
+- A detailed description that explains what makes this quiz special
+- AT LEAST 10 multiple-choice questions about {subject} with HIGH VARIETY:
+  * Mix different aspects of {subject} (history, facts, practical applications, fun trivia)
+  * Vary the question complexity and style
+  * Include some unexpected or interesting angles
+  * Make questions engaging and different from typical {subject} questions
+- 4 unique options per question (avoid generic answers)
+- CorrectAnswerIndex (0-3) - MUST match the position of the correct answer
+- Brief but informative explanations
 
-Return JSON: {{""title"":""string"",""description"":""string"",""questions"":[{{""text"":""string"",""options"":[""string"",""string"",""string"",""string""],""correctAnswerIndex"":0,""explanation"":""string""}}]}}";
+Return JSON: {{""title"":""string"",""description"":""string"",""questions"":[{{""text"":""string"",""options"":[""string"",""string"",""string"",""string""],""correctAnswerIndex"":0,""explanation"":""string""}}]}}
+
+Make sure this quiz feels completely different and unique!
+DOUBLE-CHECK that CorrectAnswerIndex matches the position of the correct answer in the options array!";
 
             var requestBody = new
             {
                 model = _openAiModel,
                 messages = new[]
                 {
-                    new { role = "system", content = "You are a helpful quiz generator for children. Create questions specifically about the requested subject." },
+                    new { role = "system", content = "You are a creative quiz generator for children. Your job is to create UNIQUE and DIVERSE quizzes that are completely different from each other, even for the same subject. Always think outside the box and create engaging, varied content. Never repeat the same quiz structure or questions." },
                     new { role = "user", content = prompt }
                 },
                 response_format = new { type = "json_object" },
@@ -56,6 +88,7 @@ Return JSON: {{""title"":""string"",""description"":""string"",""questions"":[{{
             // Debug logging
             _logger.LogInformation("Generating quiz for subject: {Subject}", subject);
             _logger.LogInformation("User info: {Name}, Grade: {Grade}, Interests: {Interests}", userInfo.Name, userInfo.Grade, userInfo.Intro);
+            _logger.LogInformation("Quiz variety elements - Theme: {Theme}, Time: {TimeOfDay}, Day: {DayOfWeek}, Style: {Style}", selectedTheme, timeOfDay, dayOfWeek, selectedStyle);
             _logger.LogInformation("Prompt length: {PromptLength} characters", prompt.Length);
 
             var request = new HttpRequestMessage(HttpMethod.Post, "https://api.openai.com/v1/chat/completions")
@@ -90,6 +123,27 @@ Return JSON: {{""title"":""string"",""description"":""string"",""questions"":[{{
             // Debug logging
             _logger.LogInformation("Generated quiz title: {Title}", quizData.Title);
             _logger.LogInformation("Number of questions: {QuestionCount}", quizData.Questions?.Count ?? 0);
+
+            // Validate and fix CorrectAnswerIndex values
+            if (quizData.Questions != null)
+            {
+                foreach (var question in quizData.Questions)
+                {
+                    _logger.LogInformation("Validating question: {QuestionText}", question.Text);
+                    _logger.LogInformation("Options: [{Options}]", string.Join(", ", question.Options));
+                    _logger.LogInformation("AI provided CorrectAnswerIndex: {ProvidedIndex}", question.CorrectAnswerIndex);
+                    
+                    // Validate that CorrectAnswerIndex is within bounds
+                    if (question.CorrectAnswerIndex < 0 || question.CorrectAnswerIndex >= question.Options.Count)
+                    {
+                        _logger.LogWarning("Invalid CorrectAnswerIndex {Index} for question. Options count: {OptionsCount}. Setting to 0.", 
+                            question.CorrectAnswerIndex, question.Options.Count);
+                        question.CorrectAnswerIndex = 0;
+                    }
+                    
+                    _logger.LogInformation("Final CorrectAnswerIndex: {FinalIndex}", question.CorrectAnswerIndex);
+                }
+            }
 
             var quiz = new Quiz
             {

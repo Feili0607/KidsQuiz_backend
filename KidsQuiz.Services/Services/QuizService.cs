@@ -70,8 +70,151 @@ namespace KidsQuiz.Services.Services
             var quizzes = await _context.Quizzes
                 .Where(q => q.KidId == kidId)
                 .ToListAsync();
-            _logger.LogInformation("Retrieved {Count} quizzes for kid with ID: {KidId}", quizzes.Count, kidId);
+            _logger.LogInformation("Retrieved {Count} quizzes for kid with ID: {KidId}", quizzes.Count(), kidId);
             return quizzes.Select(MapToDto);
+        }
+
+        public async Task<QuizDto> UpdateQuizAsync(int id, QuizUpdateDto quizUpdateDto)
+        {
+            _logger.LogInformation("Updating quiz with ID: {QuizId}", id);
+            _logger.LogInformation("Update data received: Title='{Title}', Description='{Description}', Content='{Content}', DifficultyLevel={DifficultyLevel}, Labels={Labels}", 
+                quizUpdateDto.Title, quizUpdateDto.Description, quizUpdateDto.Content, quizUpdateDto.DifficultyLevel, 
+                quizUpdateDto.Labels != null ? string.Join(",", quizUpdateDto.Labels) : "null");
+            
+            var quiz = await _context.Quizzes.FindAsync(id);
+            if (quiz == null)
+            {
+                _logger.LogWarning("Quiz with ID {QuizId} not found for update", id);
+                throw new QuizNotFoundException(id);
+            }
+
+            _logger.LogInformation("Current quiz data: Title='{Title}', DifficultyLevel={DifficultyLevel}", quiz.Title, quiz.DifficultyLevel);
+
+            // Update only the fields that are provided
+            if (!string.IsNullOrEmpty(quizUpdateDto.Title))
+            {
+                quiz.Title = quizUpdateDto.Title;
+                _logger.LogInformation("Updated Title from '{OldTitle}' to '{NewTitle}'", quiz.Title, quizUpdateDto.Title);
+            }
+            
+            if (!string.IsNullOrEmpty(quizUpdateDto.Description))
+            {
+                quiz.Description = quizUpdateDto.Description;
+                _logger.LogInformation("Updated Description");
+            }
+            
+            if (!string.IsNullOrEmpty(quizUpdateDto.Content))
+            {
+                quiz.Content = quizUpdateDto.Content;
+                _logger.LogInformation("Updated Content");
+            }
+            
+            if (quizUpdateDto.DifficultyLevel.HasValue)
+            {
+                var oldDifficulty = quiz.DifficultyLevel;
+                quiz.DifficultyLevel = quizUpdateDto.DifficultyLevel.Value;
+                _logger.LogInformation("Updated DifficultyLevel from {OldDifficulty} to {NewDifficulty}", oldDifficulty, quiz.DifficultyLevel);
+            }
+            else
+            {
+                _logger.LogInformation("DifficultyLevel not provided in update request");
+            }
+            
+            if (quizUpdateDto.Labels != null && quizUpdateDto.Labels.Any())
+            {
+                quiz.Labels = quizUpdateDto.Labels;
+                _logger.LogInformation("Updated Labels to: {Labels}", string.Join(",", quiz.Labels));
+            }
+
+            // Set modification timestamp
+            quiz.ModifiedAt = DateTime.UtcNow;
+
+            _logger.LogInformation("About to save changes. Final quiz data: Title='{Title}', DifficultyLevel={DifficultyLevel}", quiz.Title, quiz.DifficultyLevel);
+            
+            await _context.SaveChangesAsync();
+            
+            // Refresh the entity to get the latest data from the database
+            await _context.Entry(quiz).ReloadAsync();
+            
+            _logger.LogInformation("Successfully updated quiz with ID: {QuizId}. Final DifficultyLevel: {DifficultyLevel}", id, quiz.DifficultyLevel);
+            return MapToDto(quiz);
+        }
+
+        public async Task<bool> FixQuizAnswerIndicesAsync(int quizId)
+        {
+            _logger.LogInformation("Fixing answer indices for quiz with ID: {QuizId}", quizId);
+            
+            var quiz = await _context.Quizzes
+                .Include(q => q.Questions)
+                .FirstOrDefaultAsync(q => q.Id == quizId);
+                
+            if (quiz == null)
+            {
+                _logger.LogWarning("Quiz with ID {QuizId} not found for answer index fix", quizId);
+                throw new QuizNotFoundException(quizId);
+            }
+
+            var hasChanges = false;
+            
+            foreach (var question in quiz.Questions)
+            {
+                _logger.LogInformation("Checking question {QuestionId}: {QuestionText}", question.Id, question.Text);
+                _logger.LogInformation("Options: [{Options}]", string.Join(", ", question.Options));
+                _logger.LogInformation("Current CorrectAnswerIndex: {CurrentIndex}", question.CorrectAnswerIndex);
+                
+                // Check if the index is valid
+                if (question.CorrectAnswerIndex < 0 || question.CorrectAnswerIndex >= question.Options.Count)
+                {
+                    _logger.LogWarning("Invalid CorrectAnswerIndex {Index} for question {QuestionId}. Options count: {OptionsCount}. Fixing...", 
+                        question.CorrectAnswerIndex, question.Id, question.Options.Count);
+                    
+                    // Try to find the correct answer by looking at the explanation
+                    var correctAnswer = ExtractCorrectAnswerFromExplanation(question.Explanation, question.Options);
+                    if (correctAnswer >= 0)
+                    {
+                        question.CorrectAnswerIndex = correctAnswer;
+                        _logger.LogInformation("Fixed CorrectAnswerIndex to {FixedIndex} based on explanation", correctAnswer);
+                        hasChanges = true;
+                    }
+                    else
+                    {
+                        // Default to first option if we can't determine
+                        question.CorrectAnswerIndex = 0;
+                        _logger.LogWarning("Could not determine correct answer from explanation. Setting to 0.");
+                        hasChanges = true;
+                    }
+                }
+            }
+            
+            if (hasChanges)
+            {
+                quiz.ModifiedAt = DateTime.UtcNow;
+                await _context.SaveChangesAsync();
+                _logger.LogInformation("Successfully fixed answer indices for quiz {QuizId}", quizId);
+            }
+            else
+            {
+                _logger.LogInformation("No answer index fixes needed for quiz {QuizId}", quizId);
+            }
+            
+            return hasChanges;
+        }
+
+        private int ExtractCorrectAnswerFromExplanation(string explanation, List<string> options)
+        {
+            if (string.IsNullOrEmpty(explanation) || options == null || !options.Any())
+                return -1;
+                
+            // Try to find the correct answer in the explanation
+            foreach (var option in options)
+            {
+                if (explanation.Contains(option, StringComparison.OrdinalIgnoreCase))
+                {
+                    return options.IndexOf(option);
+                }
+            }
+            
+            return -1;
         }
 
         public async Task<QuizDetailDto> GenerateQuizUsingLLMAsync(UserInfoDto userInfo, int userId)

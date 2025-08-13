@@ -74,6 +74,68 @@ namespace KidsQuiz.API.Controllers
             return Ok(quizzes);
         }
 
+        [HttpPut("{id}")]
+        public async Task<ActionResult<QuizDto>> UpdateQuiz(int id, [FromBody] QuizUpdateDto quizUpdateDto)
+        {
+            try
+            {
+                _logger.LogInformation("Received quiz update request for ID: {QuizId}", id);
+                _logger.LogInformation("Update data: Title='{Title}', Description='{Description}', Content='{Content}', DifficultyLevel={DifficultyLevel}, Labels={Labels}", 
+                    quizUpdateDto?.Title, quizUpdateDto?.Description, quizUpdateDto?.Content, quizUpdateDto?.DifficultyLevel, 
+                    quizUpdateDto?.Labels != null ? string.Join(",", quizUpdateDto.Labels) : "null");
+                
+                var updatedQuiz = await _quizService.UpdateQuizAsync(id, quizUpdateDto);
+                _logger.LogInformation("Successfully updated quiz with ID: {QuizId}", id);
+                
+                // Log the returned quiz data for debugging
+                _logger.LogInformation("Returned quiz data: Title='{Title}', DifficultyLevel={DifficultyLevel}", 
+                    updatedQuiz.Title, updatedQuiz.DifficultyLevel);
+                
+                return Ok(updatedQuiz);
+            }
+            catch (QuizNotFoundException)
+            {
+                _logger.LogWarning("Quiz with ID {QuizId} not found for update", id);
+                return NotFound();
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error updating quiz with ID {QuizId}: {Message}", id, ex.Message);
+                return BadRequest($"Failed to update quiz: {ex.Message}");
+            }
+        }
+
+        [HttpPost("{id}/fix-answer-indices")]
+        public async Task<ActionResult> FixQuizAnswerIndices(int id)
+        {
+            try
+            {
+                _logger.LogInformation("Fixing answer indices for quiz with ID: {QuizId}", id);
+                var hasChanges = await _quizService.FixQuizAnswerIndicesAsync(id);
+                
+                if (hasChanges)
+                {
+                    _logger.LogInformation("Successfully fixed answer indices for quiz {QuizId}", id);
+                    return Ok(new { message = "Quiz answer indices have been fixed successfully.", quizId = id });
+                }
+                else
+                {
+                    _logger.LogInformation("No answer index fixes needed for quiz {QuizId}", id);
+                    return Ok(new { message = "No answer index fixes were needed for this quiz.", quizId = id });
+                }
+            }
+            catch (QuizNotFoundException)
+            {
+                _logger.LogWarning("Quiz with ID {QuizId} not found for answer index fix", id);
+                return NotFound();
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error fixing answer indices for quiz with ID {QuizId}: {Message}", id, ex.Message);
+                return BadRequest($"Failed to fix quiz answer indices: {ex.Message}");
+            }
+        }
+
         [HttpPost("generate-openai")]
         public async Task<ActionResult<QuizDetailDto>> GenerateOpenAIQuiz([FromBody] GenerateOpenAIQuizRequest request)
         {
