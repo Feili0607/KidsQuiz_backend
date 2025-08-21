@@ -17,6 +17,19 @@ namespace KidsQuiz.Data
         public DbSet<Question> Questions { get; set; }
         public DbSet<QuizSolvingRecord> QuizSolvingRecords { get; set; }
         public DbSet<QuestionBank> QuestionBanks { get; set; }
+        
+        // Reward System
+        public DbSet<RewardWallet> RewardWallets { get; set; }
+        public DbSet<RewardTransaction> RewardTransactions { get; set; }
+        public DbSet<RedeemableItem> RedeemableItems { get; set; }
+        public DbSet<Redemption> Redemptions { get; set; }
+        
+        // User Management
+        public DbSet<User> Users { get; set; }
+        public DbSet<Guardian> Guardians { get; set; }
+        public DbSet<KidGuardianRelationship> KidGuardianRelationships { get; set; }
+        public DbSet<ParentKidRelationship> ParentKidRelationships { get; set; }
+        public DbSet<TeacherKidRelationship> TeacherKidRelationships { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -27,6 +40,19 @@ namespace KidsQuiz.Data
             modelBuilder.ApplyConfiguration(new QuestionConfiguration());
             modelBuilder.ApplyConfiguration(new QuizSolvingRecordConfiguration());
             modelBuilder.ApplyConfiguration(new QuestionBankConfiguration());
+            
+            // Reward System Configurations
+            modelBuilder.ApplyConfiguration(new RewardWalletConfiguration());
+            modelBuilder.ApplyConfiguration(new RewardTransactionConfiguration());
+            modelBuilder.ApplyConfiguration(new RedeemableItemConfiguration());
+            modelBuilder.ApplyConfiguration(new RedemptionConfiguration());
+            
+            // User Management Configurations
+            modelBuilder.ApplyConfiguration(new UserConfiguration());
+            modelBuilder.ApplyConfiguration(new GuardianConfiguration());
+            modelBuilder.ApplyConfiguration(new KidGuardianRelationshipConfiguration());
+            modelBuilder.ApplyConfiguration(new ParentKidRelationshipConfiguration());
+            modelBuilder.ApplyConfiguration(new TeacherKidRelationshipConfiguration());
 
             // Seed initial data
             SeedData(modelBuilder);

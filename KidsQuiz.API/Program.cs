@@ -8,6 +8,9 @@ using Microsoft.EntityFrameworkCore;
 using KidsQuiz.Data;
 using KidsQuiz.Services.Interfaces;
 using KidsQuiz.Services.Services;
+using Microsoft.Identity.Web;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -24,6 +27,20 @@ builder.Services.AddCors(options =>
 
 // Configure logging
 builder.Host.ConfigureLogging(builder.Configuration);
+
+// Add Azure AD Authentication
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+    .AddMicrosoftIdentityWebApi(builder.Configuration.GetSection("AzureAd"));
+
+// Add Authorization with roles
+builder.Services.AddAuthorization(options =>
+{
+    options.AddPolicy("KidOnly", policy => policy.RequireRole("Kid"));
+    options.AddPolicy("ParentOrGuardian", policy => policy.RequireRole("Parent", "Guardian"));
+    options.AddPolicy("TeacherOnly", policy => policy.RequireRole("Teacher"));
+    options.AddPolicy("AdminOnly", policy => policy.RequireRole("Admin"));
+    options.AddPolicy("ParentOrAdmin", policy => policy.RequireRole("Parent", "Guardian", "Admin"));
+});
 
 // Add services to the container
 builder.Services.AddApplicationServices(builder.Configuration);
@@ -53,6 +70,8 @@ builder.Services.AddScoped<IQuizService, QuizService>();
 builder.Services.AddScoped<IQuizSolvingRecordService, QuizSolvingRecordService>();
 builder.Services.AddHttpClient();
 builder.Services.AddScoped<ILLMQuizService, LLMQuizService>();
+builder.Services.AddScoped<IRewardService, RewardService>();
+builder.Services.AddScoped<IGuardianService, GuardianService>();
 
 var app = builder.Build();
 
@@ -68,6 +87,9 @@ app.UseSwaggerUI(c =>
 
 
 //app.UseHttpsRedirection();
+
+// Add authentication before authorization
+app.UseAuthentication();
 app.UseAuthorization();
 
 // Use custom middleware
